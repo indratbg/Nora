@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Redirect;
 use Request;
-
-use App\Http\Requests;
 use App\Blog;
 use Validator;
 use Response;
@@ -25,7 +24,7 @@ class BlogController extends Controller
     public function index(Request $request)
     {
 
-        $posts = Blog::paginate(10);
+        $posts = Blog::orderBy('created_at','desc')->paginate(10);
         if (Request::ajax()) {
             return Response::json(View::make('page.blog_ajax', array('breadcrumb'=>'Blog','data' => $posts))->render());
         }
@@ -53,7 +52,8 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-      $validator = Validator::make($request->all(),
+
+      $validator = Validator::make(Request::all(),
                     ['title'=>'required|min:10',
                     'body'=>'required|min:20',
                     'category'=>'required']);
@@ -63,10 +63,10 @@ class BlogController extends Controller
       }
 
       $model = new Blog;
-      $model->title = $request->input('title');
-      $model->subtitle = $request->input('subtitle');
-      $model->category = $request->input('category');
-      $model->body = $request->input('body');
+      $model->title = Request::input('title');
+      $model->subtitle = Request::input('subtitle');
+      $model->category = Request::input('category');
+      $model->body = Request::input('body');
       $model->save();
       return redirect('admin/list_article')->with('success','The article has been successfully saved.');
     }
