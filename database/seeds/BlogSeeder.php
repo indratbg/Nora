@@ -11,7 +11,7 @@ class BlogSeeder extends Seeder
      */
     public function run()
     {
-    	for($x=0;$x<100;$x++)
+    	for($x=0;$x<50;$x++)
     	{
         DB::table('blogs')->insert([
             'title' => str_random(10),

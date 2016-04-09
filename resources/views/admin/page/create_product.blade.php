@@ -50,10 +50,9 @@
             <div class="col-sm-5">
                 <select name="category" class="form-control">
                     <option value="" @if(old('category')=='')selected="selected" @endif >--Select--</option>
-                    <option value="accessories" @if(old('category')=='accessories')selected="selected" @endif >
-                        Accessories
-                    </option>
-                    <option value="clothes" @if(old('category')=='clothes')selected="selected" @endif >Clothes</option>
+                    @foreach($category_cd as $row )
+                        <option value="{{ $row->category_id2 }}" @if(old('category')==$row->category_id2 )selected="selected" @endif >{{ Ucfirst($row->category_name) }}</option>
+                    @endforeach
                 </select>
                 @if ($errors->has('category'))
                     <span class="help-block">
@@ -137,7 +136,7 @@
                 <input type="submit" value="Save" class="btn btn-primary"/>
             </div>
         </div>
-        
+
     </form>
 
 @endsection

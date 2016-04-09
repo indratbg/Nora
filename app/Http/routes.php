@@ -67,13 +67,15 @@ Route::group(['middleware' => ['web']], function () {
 
         // Article
         Route::get('admin/create_article', function () {
-            return view('admin.page.create_article', ['title' => 'Create Article']);
+            $category_cd = App\Category::whereCategory_id1('article')->get();
+            return view('admin.page.create_article', ['title' => 'Create Article','category_cd'=>$category_cd]);
         });
         Route::post('admin/create_article', ['as' => 'create_acticle', 'uses' => 'BlogController@store']);
 
         //Product
         Route::get('admin/create_product', function () {
-            return view('admin.page.create_product', ['title' => 'Create Product']);
+            $category_cd = App\Category::whereCategory_id1("product")->orderBy('category_name','asc')->get();
+            return view('admin.page.create_product', ['title' => 'Create Product','category_cd'=>$category_cd]);
         });
         Route::post('admin/create_product', 'ProductsController@store');
 
@@ -103,6 +105,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/blog', 'BlogController@index');
     Route::get('/my_account', function () {
         return view('page.my_account', ['breadcrumb' => 'My Account']);
+    });
+    Route::get('blog_detail/{blog_id}',function($blog_id){
+        return view('page.blog_detail', ['breadcrumb' => 'Blog','data'=>App\Blog::whereId($blog_id)->first()]);
     });
 
 
