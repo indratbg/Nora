@@ -8,4 +8,9 @@ class Blog extends Model
 {
     //
     protected $table = 'blogs';
+
+    public static $rules=  ['title' => 'required|min:10',
+        'body' => 'required|min:20',
+        'category' => 'required'];
+
 }

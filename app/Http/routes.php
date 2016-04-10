@@ -85,6 +85,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('admin/profile', function () {
             return view('admin.page.profile_admin', ['title' => 'Profile Admin']);
         });
+        //CATEGORY
+        Route::get('admin/list_category',function(){
+            $data = App\Category::get();
+            return view('admin.page.list_category',['title'=>'List Category','data'=>$data]);
+        });
+        Route::post('admin/add_category','CategoryController@store');
 
 
     });

@@ -133,7 +133,7 @@
         <div class="form-group">
             <div class="col-sm-2"></div>
             <div class="col-sm-5">
-                <input type="submit" value="Save" class="btn btn-primary"/>
+                <input type="submit" value="Save" class="btn btn-success"/>
             </div>
         </div>
 

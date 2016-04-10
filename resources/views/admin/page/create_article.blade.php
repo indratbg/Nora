@@ -48,10 +48,23 @@
             </div>
 
         </div>
+        <div class="form-group <?php if ($errors->has('post_at')) echo 'has-error' ?>">
+            <div class="col-sm-1">
+                <label for="post_at">Post At</label>
+            </div>
 
+            <div class="col-sm-2">
+                <input type="text" class="form-control datepicker" name="post_at" value="{{ old('post_at') }}"
+                       placeholder="dd/mm/yyyy">
+                @if ($errors->has('post_at'))
+                    <span class="help-block">
+                <strong>{{ $errors->first('post_at') }}</strong>
+            </span>
+                @endif
+            </div>
+        </div>
 
         <div class="form-group <?php if ($errors->has('body')) echo 'has-error' ?>">
-            <!-- <label for="category" class="col-sm-2 control-label">Description</label> -->
             <div class="col-sm-10">
                 <textarea class="form-control ckeditor" name="body">{{ old('body')}}</textarea>
                 @if ($errors->has('body'))
@@ -62,9 +75,8 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-2"></div>
             <div class="col-sm-5">
-                <input type="submit" value="Save" class="btn btn-primary btn-block"/>
+                <input type="submit" value="Save" class="btn btn-success"/>
             </div>
     </form>
 

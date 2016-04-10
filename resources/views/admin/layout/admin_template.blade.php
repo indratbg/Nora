@@ -102,7 +102,7 @@
 </html>
 <script type="text/javascript">
     $(".datepicker").datepicker();
-    $('#list_accesories , #list_article').DataTable({
+    $('#list_accesories , #list_article, #list_category').DataTable({
           "paging": true,
           "lengthChange": true,
           "searching": true,

@@ -8,6 +8,7 @@ use App\Blog;
 use Validator;
 use Response;
 use View;
+use Carbon\Carbon as Carbon;
 
 class BlogController extends Controller
 {
@@ -19,18 +20,19 @@ class BlogController extends Controller
 
     public function __construc()
     {
-        $this->middleware('admin',['except'=>'index']);
+        $this->middleware('admin', ['except' => 'index']);
     }
-    public function index(Request $request, $category='')
+
+    public function index(Request $request, $category = '')
     {
 
-        $posts = Blog::where('category','like',"%$category%")->orderBy('created_at','desc')->paginate(10);
+        $posts = Blog::where('category', 'like', "%$category%")->orderBy('created_at', 'desc')->paginate(10);
         if (Request::ajax()) {
-            return Response::json(View::make('page.blog_ajax', array('breadcrumb'=>'Blog','data' => $posts))->render());
+            return Response::json(View::make('page.blog_ajax', array('breadcrumb' => 'Blog', 'data' => $posts))->render());
         }
-        return View::make('page.blog', array('data' => $posts,'breadcrumb'=>'Blog'));
+        return View::make('page.blog', array('data' => $posts, 'breadcrumb' => 'Blog'));
 
-       return view('page.blog',['breadcrumb'=>'Blog','data'=>Blog::paginate(10) ]);
+        return view('page.blog', ['breadcrumb' => 'Blog', 'data' => Blog::paginate(10)]);
     }
 
     /**
@@ -46,34 +48,33 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 
-      $validator = Validator::make(Request::all(),
-                    ['title'=>'required|min:10',
-                    'body'=>'required|min:20',
-                    'category'=>'required']);
-      if($validator->fails())
-      {
-        return redirect('admin/create_article')->withInput()->withErrors($validator);
-      }
-
-      $model = new Blog;
-      $model->title = Request::input('title');
-      $model->subtitle = Request::input('subtitle');
-      $model->category = Request::input('category');
-      $model->body = Request::input('body');
-      $model->save();
-      return redirect('admin/list_article')->with('success','The article has been successfully saved.');
+        $validator = Validator::make(Request::all(),Blog::$rules );
+        if ($validator->fails()) {
+            return redirect('admin/create_article')->withInput()->withErrors($validator);
+        }
+        $post_at = Request::input('post_at');
+        if(Carbon::createFromFormat('d/m/Y',$post_at))$post_at = Carbon::createFromFormat('d/m/Y',$post_at)->format('Y-m-d');
+        $model = new Blog;
+        $model->title = Request::input('title');
+        $model->subtitle = Request::input('subtitle');
+        $model->category = Request::input('category');
+        $model->body = Request::input('body');
+        $model->status = 'A';
+        $model->post_at = $post_at;
+        $model->save();
+        return redirect('admin/list_article')->with('success', 'The article has been successfully saved.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -84,7 +85,7 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -95,8 +96,8 @@ class BlogController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -107,7 +108,7 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

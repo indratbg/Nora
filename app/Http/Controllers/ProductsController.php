@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use Carbon\Carbon as Carbon;
 
 class ProductsController extends Controller
+
 {
     /**
      * Display a listing of the resource.
