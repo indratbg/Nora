@@ -17,7 +17,9 @@ class CreateBlogsTable extends Migration
             $table->string('title');
             $table->string('subtitle');
             $table->string('category');
-            $table->string('body');
+            $table->text('body');
+            $table->string('status',1);//A->POST, N->Save as draft
+            $table->date('post_at');
             $table->timestamps();
         });
     }

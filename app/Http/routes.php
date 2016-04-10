@@ -60,12 +60,13 @@ Route::group(['middleware' => ['web']], function () {
             return view('admin.page.view_accessories', ['title' => 'View Product ' . $data->product_name, 'data' => $data,'images'=>$images]);
         });
 
-
+        // Article
         Route::get('admin/list_article', function () {
-            return view('admin.page.list_article', ['title' => 'List Article']);
+            $data = App\Blog::orderBy('post_at','desc')->get();
+            return view('admin.page.list_article', ['title' => 'List Article','data'=>$data]);
         });
 
-        // Article
+
         Route::get('admin/create_article', function () {
             $category_cd = App\Category::whereCategory_id1('article')->get();
             return view('admin.page.create_article', ['title' => 'Create Article','category_cd'=>$category_cd]);
@@ -102,14 +103,16 @@ Route::group(['middleware' => ['web']], function () {
         return view('page.contact_us', ['breadcrumb' => 'Contact Us']);
     });
     // Route::get('/blog',function(){ return view('page.blog',['breadcrumb'=>'Blog','data'=>App\Blog::paginate(3)]);  });
-    Route::get('/blog', 'BlogController@index');
-    Route::get('/my_account', function () {
-        return view('page.my_account', ['breadcrumb' => 'My Account']);
-    });
+    Route::get('/blog/{category?}', 'BlogController@index');
+
     Route::get('blog_detail/{blog_id}',function($blog_id){
         return view('page.blog_detail', ['breadcrumb' => 'Blog','data'=>App\Blog::whereId($blog_id)->first()]);
     });
 
+
+    Route::get('/my_account', function () {
+        return view('page.my_account', ['breadcrumb' => 'My Account']);
+    });
 
     Route::auth();
     Route::get('/home', 'HomeController@index');

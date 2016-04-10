@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'BlogSeeder' => $baseDir . '/database/seeds/BlogSeeder.php',
     'CategorySeeder' => $baseDir . '/database/seeds/CategorySeeder.php',
-    'CatergorySeeder' => $baseDir . '/database/seeds/CatergorySeeder.php',
     'Comment' => $baseDir . '/database/migrations/2016_03_13_084334_comment.php',
     'CreateBlogsTable' => $baseDir . '/database/migrations/2016_03_26_165936_create_blogs_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_04_09_135645_create_categories_table.php',
@@ -527,4 +526,5 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UserSeeder' => $baseDir . '/database/seeds/UserSeeder.php',
 );

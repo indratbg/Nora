@@ -3,23 +3,27 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-sm-2">
         <h1 class="lead">Categories</h1>
         <ul class="list-unstyled">
-            <li><a href="#"> Categori 1</a></li>
-            <li><a href="#"> Categori 2</a></li>
+            @foreach(App\Category::whereCategory_id1('article')->get() as $row)
+                <li ><a  href="{{ url('blog/'.$row->category_id2) }}">{{ $row->category_name }} <span class="badge">{{ App\Blog::where('category','like',
+                $row->category_id2)->count() }}</span></a></li>
+            @endforeach
+
         </ul>
         <h2 class="lead">Recent Post</h2>
         <ul class="list-unstyled">
-            <li><a href="#"> Necklace on Jermany</a></li>
-            <li><a href="#"> Which one do you want?</a></li>
+            @foreach(App\Blog::orderBy('created_at','desc')->limit(3)->get() as $row)
+                <li><a href="{{ url('blog_detail/'.$row->id) }}"> {{  substr($row->title,0,20) }}</a></li>
+            @endforeach
         </ul>
     </div>
-    <div class="col-md-10">
+    <div class="col-sm-10">
          <div class="posts">
             @foreach($data as $row)
             <h2 class=""><a href="{{ url('blog_detail/'.$row->id) }}" class="link"> {{ $row->title  }}<small>{{ '&emsp;'.$row->subtitle  }}</small></a></h2>
-            <small>{{ "Create at : " .$row->created_at }}</small>
+            <small><span class="fa fa-clock-o">&nbsp;Created at &nbsp;</span>{{ $row->created_at }}</small>
             <p>{!! substr($row->body,0,500) !!}<a href="{{ url('blog_detail/'.$row->id) }}"> [....]</a></p>
                 <div class="clearfix"></div>
             @endforeach
@@ -29,7 +33,7 @@
     </div>
 </div>
 @endsection
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="text/javascript" src="{!! asset('public/js/jquery-1.12.0.min.js') !!}"></script>
   <script>
     $(window).on('hashchange', function() {
         if (window.location.hash) {

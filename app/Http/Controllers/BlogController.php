@@ -21,17 +21,16 @@ class BlogController extends Controller
     {
         $this->middleware('admin',['except'=>'index']);
     }
-    public function index(Request $request)
+    public function index(Request $request, $category='')
     {
 
-        $posts = Blog::orderBy('created_at','desc')->paginate(10);
+        $posts = Blog::where('category','like',"%$category%")->orderBy('created_at','desc')->paginate(10);
         if (Request::ajax()) {
             return Response::json(View::make('page.blog_ajax', array('breadcrumb'=>'Blog','data' => $posts))->render());
         }
         return View::make('page.blog', array('data' => $posts,'breadcrumb'=>'Blog'));
 
-        
-       return view('page.blog',['breadcrumb'=>'Blog','data'=>Blog::paginate(3) ]);
+       return view('page.blog',['breadcrumb'=>'Blog','data'=>Blog::paginate(10) ]);
     }
 
     /**
