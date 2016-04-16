@@ -87,11 +87,14 @@ Route::group(['middleware' => ['web']], function () {
         });
         //CATEGORY
         Route::get('admin/list_category',function(){
-            $data = App\Category::get();
+            $data = App\Category::orderBy('created_at','desc')->get();
             return view('admin.page.list_category',['title'=>'List Category','data'=>$data]);
         });
+
         Route::post('admin/add_category','CategoryController@store');
         Route::get('admin/delete_category/{id}','CategoryController@destroy');
+        Route::get('admin/edit_category/{id}','CategoryController@edit');
+        Route::post('admin/update_category','CategoryController@update');
 
     });
 

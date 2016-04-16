@@ -2,7 +2,7 @@
 
 @section('content')
         <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategory">
+<button type="button" onclick="addCategory()" class="btn btn-primary">
     <span class="fa fa-plus">&nbsp;</span>Add Category
 </button>
 <br/><br/>
@@ -29,8 +29,9 @@
                             <td>{{ $row->category_name }}</td>
                             <td>{{ $row->created_at }}</td>
                             <td>
-                                <a href="{{ url('admin/edit_category/'.$row->id) }}"><i class="fa fa-pencil"></i></a>
-                                <a href="" class="delete" onclick="delete_category({{ $row->id }})"><i
+                                <a href="javascript:void(0)" onclick="edit_category({{ $row->id }})"><i
+                                            class="fa fa-pencil"></i></a>
+                                <a href="javascript:void(0)" onclick="delete_category({{ $row->id }})"><i
                                             class="glyphicon glyphicon-trash"></i></a>
                             </td>
                         </tr>
@@ -49,11 +50,12 @@
         <div class="modal-content">
 
             <div class="modal-body">
-                <form class="form-horizontal" action="{{ url('admin/add_category') }}" method="post">
+                <form id="form_category" class="form-horizontal" action="javascript:void(0)">
                     {!! csrf_field() !!}
+                    <input type="hidden" name="id" id="id"/>
                     <fieldset>
                         <!-- Form Name -->
-                        <legend>Add Category</legend>
+                        <legend id="title">Add Category</legend>
 
                         <!-- Text input-->
                         <div class="form-group">
@@ -101,10 +103,11 @@
 
                         <!-- Button (Double) -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="button1id">Double Button</label>
+                            <div class="col-md-4"></div>
 
                             <div class="col-md-8">
-                                <button id="button1id" name="button1id" class="btn btn-success">Save</button>
+                                <button id="button1id" onclick="save()" name="button1id" class="btn btn-success">Save
+                                </button>
                                 <button id="button2id" name="button2id" data-dismiss="modal" class="btn btn-danger">
                                     Close
                                 </button>
@@ -123,24 +126,87 @@
     </div>
 </div>
 @endsection
-<script>
-    function delete_category(num) {
-        return false;
-     /*   if(confirm('Are you sure want to delete ?'))
-        {
+
+<script type="text/javascript">
+    var save_method; //for save method string
+
+    function addCategory() {
+        save_method = 'add';
+        $('#form_category')[0].reset(); // reset form on modals
+        $('#addCategory').modal('show'); // show bootstrap modal
+    }
+
+    function edit_category(num) {
+        save_method = 'update';
+        $('#form_category')[0].reset(); // reset form on modals
+
+        //Ajax Load data from ajax
         $.ajax({
-            url: "delete_category/" + num,
-            type: "get",
-            data: {},
-            success: function (response) {
-                location.reload();
+            url: "edit_category/" + num,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+
+                $('[name="id"]').val(data.id);
+                $('[name="category_id1"]').val(data.category_id1);
+                $('[name="category_id2"]').val(data.category_id2);
+                $('[name="category_id3"]').val(data.category_id3);
+                $('[name="category_name"]').val(data.category_name);
+
+                $('#addCategory').modal('show');
+                $('#title').html('Update Category');
+                $('#button1id').html('Update');
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log(textStatus, errorThrown);
+                alert('Error get data from ajax');
             }
-
         });
-        }*/
+    }
 
+    function delete_category(num) {
+
+        if (confirm('Are you sure want to delete ?')) {
+            $.ajax({
+                url: "delete_category/" + num,
+                type: "get",
+                data: {},
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+
+            });
+        }
+    }
+
+    function save() {
+        var url;
+        if (save_method == 'add') {
+            url = "add_category";
+        }
+        else {
+            url = "update_category";
+        }
+
+        // ajax adding data to database
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: $('#form_category').serialize(),
+            dataType: "JSON",
+            success: function (data) {
+                //if success close modal and reload ajax table
+                $('#addCategory').modal('hide');
+                window.location.reload();
+               // reload_table();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert('Error adding / update data');
+            }
+        });
     }
 </script>
+
