@@ -41,23 +41,27 @@ Route::group(['middleware' => ['web']], function () {
         });
         Route::get('logout_admin', 'AdminController@logoutAdmin');
 
-        Route::get('admin/list_fassion', function () {
-            return view('admin.page.list_fassion', ['title' => 'List Fassion']);
-        });
-        //Accessories
-        Route::get('admin/list_accesories', function () {
-            $data = App\Products::whereStatus('active')->whereCategory('accessories')->get();
 
-            return view('admin.page.list_accesories', ['title' => 'List Accessories', 'data' => $data]);
+        //Products
+        Route::get('admin/list_products', function () {
+            $data = App\Products::whereStatus('active')->whereCategory('accessories')->get();
+            return view('admin.page.list_products', ['title' => 'List Products', 'data' => $data]);
         });
-        Route::get('admin/view_accessories/{id_product}', function ($id_product) {
+        Route::get('admin/edit_product/{id_product}',function($id_product){
+            $data = App\Products::whereId_product($id_product)->first();
+            if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)) $data->post_date_from = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)->format('d/m/Y');
+            if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)) $data->post_date_to = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)->format('d/m/Y');
+            return view('admin.page.edit_product',['title'=>'Update Product','data'=>$data]);
+        });
+
+        Route::get('admin/view_product/{id_product}', function ($id_product) {
             $data = App\Products::where('id_product', '=', $id_product)->first();
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)) $data->post_date_from = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)->format('d-M-Y');
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)) $data->post_date_to = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)->format('d-M-Y');
             $images = App\Picture::where('id_product','=',$id_product)->get();
 
 
-            return view('admin.page.view_accessories', ['title' => 'View Product ' . $data->product_name, 'data' => $data,'images'=>$images]);
+            return view('admin.page.view_product', ['title' => 'View Product ' . $data->product_name, 'data' => $data,'images'=>$images]);
         });
 
         // Article

@@ -58,8 +58,8 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ url('/admin/create_product') }}"><i class="fa fa-pencil"></i> Post Product</a></li>
-                    <li><a href="{{ url('/admin/list_accesories') }}"><i class="fa fa-circle-o"></i> Accesories</a></li>
-                    <li><a href="{{ url('/admin/list_fassion') }}"><i class="fa fa-circle-o"></i> Fassion</a></li>
+                    <li><a href="{{ url('/admin/list_products') }}"><i class="fa fa-th-list"></i> List Product</a></li>
+                    {{--<li><a href="{{ url('/admin/list_fassion') }}"><i class="fa fa-circle-o"></i> Fassion</a></li>--}}
                 </ul>
             </li>
             <li><a href="{{ url('admin/list_category') }}"><span class="fa fa-th-list"></span>Category</a></li>
