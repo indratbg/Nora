@@ -16,9 +16,9 @@
     <meta property="og:image"         content="" />
 
     <!-- CSS And JavaScript -->
-    <!-- <link href="{!! asset('css/bootstrap.min.css') !!}" media="all" rel="stylesheet" type="text/css"/> -->
+     {{--<link href="{!! asset('public/css/bootstrap.min.css') !!}" media="all" rel="stylesheet" type="text/css"/>--}}
     <!-- united theme -->
-     {{--<link href="{!! asset('public/css/bootstrap_united.min.css') !!}" media="all" rel="stylesheet" type="text/css"/> --}}
+     {{--<link href="{!! asset('public/css/bootstrap_united.min.css') !!}" media="all" rel="stylesheet" type="text/css"/>--}}
     <!-- simplex theme -->
       {{--<link href="{!! asset('public/css/bootstrap_simplex.min.css') !!}" media="all" rel="stylesheet" type="text/css"/>  --}}
     <!--pakai superhero theme -->

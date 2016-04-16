@@ -17,7 +17,7 @@ class MstPicture extends Migration
             $table->string('filename');
             $table->string('mime');
             $table->string('original_filename');
-            //$table->string('path',255)
+            //$table->string('path',255);
             $table->timestamps();
         });
     }

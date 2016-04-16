@@ -91,7 +91,7 @@ Route::group(['middleware' => ['web']], function () {
             return view('admin.page.list_category',['title'=>'List Category','data'=>$data]);
         });
         Route::post('admin/add_category','CategoryController@store');
-
+        Route::get('admin/delete_category/{id}','CategoryController@destroy');
 
     });
 

@@ -7,42 +7,40 @@
 </button>
 <br/><br/>
 
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-body">
-                    <table id="list_category" class="table table-condensed table-hover ">
-                        <thead>
-                        <tr class="info">
-                            <td>Sub</td>
-                            <td>Category Code</td>
-                            <td>Category Name</td>
-                            <td>Created At</td>
-                            <td>Action</td>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body">
+                <table id="list_category" class="table table-condensed table-hover ">
+                    <thead>
+                    <tr class="info">
+                        <td>Sub</td>
+                        <td>Category Code</td>
+                        <td>Category Name</td>
+                        <td>Created At</td>
+                        <td>Action</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($data as $row)
+                        <tr>
+                            <td>{{ $row->category_id1 }}</td>
+                            <td>{{ $row->category_id2 }}</td>
+                            <td>{{ $row->category_name }}</td>
+                            <td>{{ $row->created_at }}</td>
+                            <td>
+                                <a href="{{ url('admin/edit_category/'.$row->id) }}"><i class="fa fa-pencil"></i></a>
+                                <a href="" class="delete" onclick="delete_category({{ $row->id }})"><i
+                                            class="glyphicon glyphicon-trash"></i></a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($data as $row)
-                            <tr>
-                                <td>{{ $row->category_id1 }}</td>
-                                <td>{{ $row->category_id2 }}</td>
-                                <td>{{ $row->category_name }}</td>
-                                <td>{{ $row->created_at }}</td>
-                                <td>
-                                    <a href="{{ url('admin/edit_category/'.$row->id) }}"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{ url('admin/delete_category/'.$row->id) }}"><i
-                                                class="glyphicon glyphicon-trash"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-
-
+</div>
 
 
 <!-- Modal -->
@@ -60,26 +58,32 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="category_id1">Parameter 1</label>
+
                             <div class="col-md-4">
-                                <input id="category_id1" name="category_id1" type="text" placeholder="Parameter 1" class="form-control input-md" required="">
+                                <input id="category_id1" name="category_id1" type="text" placeholder="Parameter 1"
+                                       class="form-control input-md" required="">
 
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="category_cd2">Parameter 2</label>
+                            <label class="col-md-4 control-label" for="category_id2">Parameter 2</label>
+
                             <div class="col-md-4">
-                                <input id="category_cd2" name="category_cd2" type="text" placeholder="Parameter 2" class="form-control input-md" required="">
+                                <input id="category_cd2" name="category_id2" type="text" placeholder="Parameter 2"
+                                       class="form-control input-md" required="">
 
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="category_cd3">Parameter 3</label>
+                            <label class="col-md-4 control-label" for="category_id3">Parameter 3</label>
+
                             <div class="col-md-4">
-                                <input id="category_cd3" name="category_cd3" type="text" placeholder="Parameter 3" class="form-control input-md">
+                                <input id="category_cd3" name="category_id3" type="text" placeholder="Parameter 3"
+                                       class="form-control input-md">
 
                             </div>
                         </div>
@@ -87,8 +91,10 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="category_name">Category Name</label>
+
                             <div class="col-md-4">
-                                <input id="category_name" name="category_name" type="text" placeholder="Category Name" class="form-control input-md" required="">
+                                <input id="category_name" name="category_name" type="text" placeholder="Category Name"
+                                       class="form-control input-md" required="">
 
                             </div>
                         </div>
@@ -96,9 +102,12 @@
                         <!-- Button (Double) -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="button1id">Double Button</label>
+
                             <div class="col-md-8">
-                                <button id="button1id" name="button1id"  class="btn btn-success">Save</button>
-                                <button id="button2id" name="button2id" data-dismiss="modal" class="btn btn-danger">Close</button>
+                                <button id="button1id" name="button1id" class="btn btn-success">Save</button>
+                                <button id="button2id" name="button2id" data-dismiss="modal" class="btn btn-danger">
+                                    Close
+                                </button>
                             </div>
                         </div>
 
@@ -106,16 +115,32 @@
                 </form>
 
             </div>
-          {{--  <div class="modal-footer">
-                <button type="button" class="btn btn-danger" >Close</button>
-                <button type="button" class="btn btn-success">Save changes</button>
-            </div>--}}
+            {{--  <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" >Close</button>
+                  <button type="button" class="btn btn-success">Save changes</button>
+              </div>--}}
         </div>
     </div>
 </div>
 @endsection
 <script>
-$('.delete').click(function(){
-    alert('test');
-})
+    function delete_category(num) {
+        return false;
+     /*   if(confirm('Are you sure want to delete ?'))
+        {
+        $.ajax({
+            url: "delete_category/" + num,
+            type: "get",
+            data: {},
+            success: function (response) {
+                location.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+
+        });
+        }*/
+
+    }
 </script>
