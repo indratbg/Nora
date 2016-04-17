@@ -26,6 +26,7 @@ class ProductsController extends Controller
     {
         $this->middleware('admin');
     }
+
     public function index()
     {
         //
@@ -44,75 +45,63 @@ class ProductsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 
-        if(Carbon::createFromFormat('d/m/Y', $request->input('post_date_from')))  $post_date_from = Carbon::createFromFormat('d/m/Y',  $request->input('post_date_from'))->format('Y-m-d');
-        if(Carbon::createFromFormat('d/m/Y', $request->input('post_date_to')))  $post_date_to = Carbon::createFromFormat('d/m/Y',  $request->input('post_date_to'))->format('Y-m-d');
-        $validator = Validator::make($request->all(),Products::$rules);
-        if($validator->fails())
-        {
+        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))) $post_date_from = Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))->format('Y-m-d');
+        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))) $post_date_to = Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))->format('Y-m-d');
+        $validator = Validator::make($request->all(), Products::$rules);
+        if ($validator->fails()) {
             return Redirect::to('admin/create_product')->withInput()->withErrors($validator);
         }
-       $model = new Products;
-        $id_product = rand().substr($request->input('product_name'), 4);
-       $model->id_product= $id_product;
-       $model->product_name=$request->input('product_name');
-       $model->category = $request->input('category');
-       $model->description = $request->input('description');
-       $model->stock = $request->input('stock');
-       $model->price = $request->input('price');
-       $model->post_date_from = $post_date_from;
-       $model->post_date_to = $post_date_to;
-       $model->status = $request->input('status');
-       $model->save();
+        $model = new Products;
+        $id_product = rand() . substr($request->input('product_name'), 4);
+        $model->id_product = $id_product;
+        $model->product_name = $request->input('product_name');
+        $model->category = $request->input('category');
+        $model->description = $request->input('description');
+        $model->stock = $request->input('stock');
+        $model->price = $request->input('price');
+        $model->post_date_from = $post_date_from;
+        $model->post_date_to = $post_date_to;
+        $model->status = $request->input('status');
+        $model->save();
 
-       if($request->hasFile('image'))
-       {
+        if ($request->hasFile('image')) {
 
-        $files = $request->file('image.*');
-      //  var_dump(count($files));die();
-        foreach ($files as $file) 
-        {            
-            $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
-            $validator = Validator::make(['file'=> $file], $rules);
-            if($validator->fails())
-            {
-                 return Redirect::to('admin/create_product')->withInput()->withErrors($validator);
+            $files = $request->file('image.*');
+            //  var_dump(count($files));die();
+            foreach ($files as $file) {
+                $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
+                $validator = Validator::make(['file' => $file], $rules);
+                if ($validator->fails()) {
+                    return Redirect::to('admin/create_product')->withInput()->withErrors($validator);
+                }
+
+                $extension = $file->getClientOriginalExtension();
+                Storage::disk('product')->put($file->getFilename() . '.' . $extension, File::get($file));
+                $entry = new Picture();
+                $entry->id_product = $id_product;
+                $entry->filename = $file->getFilename() . '.' . $extension;
+                $entry->mime = $file->getClientMimeType();
+                $entry->original_filename = $file->getClientOriginalName();
+                $entry->save();
             }
 
-            $extension = $file->getClientOriginalExtension();
-            Storage::disk('product')->put($file->getFilename().'.'.$extension,  File::get($file));
-            $entry = new Picture();
-            $entry->id_product = $id_product;
-            $entry->filename = $file->getFilename().'.'.$extension;
-            $entry->mime = $file->getClientMimeType();
-            $entry->original_filename = $file->getClientOriginalName();
-            $entry->save();
+
         }
-       
+        return Redirect::to('admin/list_products')->with('success', ucfirst($request->input('product_name')) . ' has been saved');
 
-       }
-
-       if($request->input('category') =='accessories')
-       {
-            return Redirect::to('admin/list_accesories')->with('success',ucfirst($request->input('product_name')).' has been saved');
-       }
-       else
-       {    
-            return Redirect::to('admin/list_fassion')->with('success',ucfirst($request->input('product_name')).' has been saved');
-       }
-       
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -123,7 +112,7 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -134,23 +123,41 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_product)
     {
-        //
-    }
+        $validator = Validator::make($request->all(), Products::$rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))) $post_date_from = Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))->format('Y-m-d');
+        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))) $post_date_to = Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))->format('Y-m-d');
 
+        $model = Products::where('id_product', $id_product)->
+        update(['product_name' => $request->input('product_name'),
+            'post_date_from' => $post_date_from,
+            'post_date_to' => $post_date_to,
+            'stock' => $request->input('stock'),
+            'price' => $request->input('price'),
+            'description' => $request->input('description'),
+            'category' => $request->input('category'),
+            'status' => $request->input('status')
+        ]);
+
+        return Redirect::to('admin/list_products')->with('success', 'Successful update product ' . $request->input('product_name'));
+    }
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_product)
     {
-        //
+        Products::whereId_product($id_product)->delete();
+       // echo json_encode(['sukses'=>'SUkses bro']);
     }
 }

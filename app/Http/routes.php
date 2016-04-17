@@ -44,7 +44,7 @@ Route::group(['middleware' => ['web']], function () {
 
         //Products
         Route::get('admin/list_products', function () {
-            $data = App\Products::whereStatus('active')->whereCategory('accessories')->get();
+            $data = App\Products::whereStatus('active')->get();
             return view('admin.page.list_products', ['title' => 'List Products', 'data' => $data]);
         });
         Route::get('admin/edit_product/{id_product}',function($id_product){
@@ -53,16 +53,22 @@ Route::group(['middleware' => ['web']], function () {
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)) $data->post_date_to = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)->format('d/m/Y');
             return view('admin.page.edit_product',['title'=>'Update Product','data'=>$data]);
         });
+        Route::get('admin/create_product', function () {
+            $category_cd = App\Category::whereCategory_id1("product")->orderBy('category_name','asc')->get();
+            return view('admin.page.create_product', ['title' => 'Create Product','category_cd'=>$category_cd]);
+        });
+        Route::post('admin/create_product', 'ProductsController@store');
+        Route::get('admin/delete_product/{id_product}','ProductsController@destroy');
 
         Route::get('admin/view_product/{id_product}', function ($id_product) {
             $data = App\Products::where('id_product', '=', $id_product)->first();
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)) $data->post_date_from = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)->format('d-M-Y');
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)) $data->post_date_to = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)->format('d-M-Y');
             $images = App\Picture::where('id_product','=',$id_product)->get();
-
-
             return view('admin.page.view_product', ['title' => 'View Product ' . $data->product_name, 'data' => $data,'images'=>$images]);
         });
+        Route::post('admin/update_product/{id_product}','ProductsController@update');
+        
 
         // Article
         Route::get('admin/list_article', function () {
@@ -77,12 +83,6 @@ Route::group(['middleware' => ['web']], function () {
         });
         Route::post('admin/create_article', ['as' => 'create_acticle', 'uses' => 'BlogController@store']);
 
-        //Product
-        Route::get('admin/create_product', function () {
-            $category_cd = App\Category::whereCategory_id1("product")->orderBy('category_name','asc')->get();
-            return view('admin.page.create_product', ['title' => 'Create Product','category_cd'=>$category_cd]);
-        });
-        Route::post('admin/create_product', 'ProductsController@store');
 
 
         // Profile Admin

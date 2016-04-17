@@ -22,9 +22,9 @@
     <!-- simplex theme -->
       {{--<link href="{!! asset('public/css/bootstrap_simplex.min.css') !!}" media="all" rel="stylesheet" type="text/css"/>  --}}
     <!--pakai superhero theme -->
-     {{--<link href="{!! asset('public/css/bootstrap_superhero.min.css') !!}" media="all" rel="stylesheet" type="text/css"/>--}}
+     <link href="{!! asset('public/css/bootstrap_superhero.min.css') !!}" media="all" rel="stylesheet" type="text/css"/>
     <!-- cosmo theme -->
-      <link href="{!! asset('public/css/bootstrap_cosmo.min.css') !!}" media="all" rel="stylesheet" type="text/css"/>
+    {{--<link href="{!! asset('public/css/bootstrap_cosmo.min.css') !!}" media="all" rel="stylesheet" type="text/css"/>--}} 
 
     <link rel="stylesheet" href="{!! asset('public/css/font-awesome.min.css') !!}" type="text/css">
     <!-- bootstrap wysihtml5 - text editor -->

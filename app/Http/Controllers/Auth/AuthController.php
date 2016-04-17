@@ -52,6 +52,9 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+            'city'  =>'required',
+            'province'=>'required'
+            
         ]);
     }
 
@@ -67,6 +70,11 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'province'=>$data['province'],
+            'city'=>$data['city'],
+            'address1'=>$data['address1'],
+            'address2'=>$data['address2'],
+            'address3'=>$data['address3'],
             'level' => 'A',
         ]);
     }

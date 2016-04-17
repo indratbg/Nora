@@ -65,8 +65,8 @@
         <div class="form-group <?php if ($errors->has('description')) echo 'has-error' ?>">
             <label for="category" class="col-sm-2 control-label">Description</label>
 
-            <div class="col-sm-5">
-                <textarea class="form-control" name="description">{{ old('description')}}</textarea>
+            <div class="col-sm-8">
+                <textarea class="form-control ckeditor" name="description">{{ old('description')}}</textarea>
                 @if ($errors->has('description'))
                     <span class="help-block">
                 <strong>{{ $errors->first('description') }}</strong>

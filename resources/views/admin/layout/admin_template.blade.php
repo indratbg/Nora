@@ -27,7 +27,8 @@
     <!-- Daterange picker -->
     <!-- <link rel="stylesheet" href="{!! asset('public/admin/plugins/daterangepicker/daterangepicker-bs3.css') !!}"> -->
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{!! asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}">
+    <link rel="stylesheet"
+          href="{!! asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}">
     <!-- DataTables -->
     <link rel="stylesheet" href="{!! asset('public/admin/plugins/datatables/dataTables.bootstrap.css') !!}">
 
@@ -37,19 +38,19 @@
 <body class="hold-transition skin-purple sidebar-mini">
 <div class="wrapper">
 
- <!-- Header -->
+    <!-- Header -->
     @include('admin.layout.header')
 
-    <!-- Sidebar -->
+            <!-- Sidebar -->
     @include('admin.layout.sidebar')
 
- <!-- Content Wrapper. Contains page content -->
+            <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
                 {{ $title or ''}}
-        
+
             </h1>
             <ol class="breadcrumb">
                 <li><a href=" {{ url('dashboard') }} "><i class="fa fa-dashboard"></i> Home</a></li>
@@ -59,25 +60,25 @@
 
         <!-- Main content -->
         <section class="content">
-        @if(session('success'))
-        <div class="alert alert-dismissible alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p><strong>{!! Session::get('success') !!}</strong></p>
-        </div>
+            @if(session('success'))
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p><strong>{!! Session::get('success') !!}</strong></p>
+                </div>
 
 
-        @endif
+            @endif
             @yield('content')
 
         </section><!-- /.content -->
-   </div><!-- /.content-wrapper -->
+    </div><!-- /.content-wrapper -->
 
-   <!-- Footer -->
+    <!-- Footer -->
     @include('admin.layout.footer')
 </div> <!--end wrapper-->
- 
 
-            <!-- jQuery 2.1.4 -->
+
+<!-- jQuery 2.1.4 -->
 <script src="{!! asset('public/admin/plugins/jQuery/jQuery-2.1.4.min.js') !!}"></script>
 
 <script type="text/javascript" src="{!! asset('public/js/jquery-1.12.0.min.js') !!}"></script>
@@ -92,24 +93,25 @@
 <!-- CK Editor -->
 <!-- <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script> -->
 <script src="{!! asset('public/admin/plugins/ckeditor/ckeditor.js') !!}"></script>
- <!-- bootstrap time picker -->
+<!-- bootstrap time picker -->
 <script src="{!! asset('public/admin/plugins/datepicker/bootstrap-datepicker.js') !!}"></script>
 <!-- DataTables -->
 <script src="{!! asset('public/admin/plugins/datatables/jquery.dataTables.min.js') !!}"></script>
 <script src="{!! asset('public/admin/plugins/datatables/dataTables.bootstrap.min.js') !!}"></script>
 
+
 </body>
 </html>
 <script type="text/javascript">
-    $(".datepicker").datepicker();
-    $('#list_accesories , #list_article, #list_category').DataTable({
-          "paging": true,
-          "lengthChange": true,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false
-        });
+    $(".datepicker").datepicker({'format': 'dd/mm/yyyy'});
+    $('#list_products , #list_article, #list_category').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+    });
 
 
 </script>

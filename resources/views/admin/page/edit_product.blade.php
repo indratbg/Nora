@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form class="form-horizontal" action="{{ url('admin/update_product') }}" method="post"
+    <form class="form-horizontal" action="{{ url('admin/update_product/'.$data->id_product) }}" method="post"
           enctype="multipart/form-data">
         {!! csrf_field() !!}
         <div class="form-group <?php if ($errors->has('product_name')) echo 'has-error' ?>">

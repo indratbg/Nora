@@ -55,7 +55,7 @@
                 <label>Description</label>
             </div>
             <div class="col-xs-9">
-                <p>{{ $data->description }}</p>
+                <p>{!! $data->description !!}</p>
             </div>
         </div>
         {{--Image of Product--}}
