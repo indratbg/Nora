@@ -113,22 +113,29 @@ Route::group(['middleware' => ['web']], function () {
 
     //User
     Route::get('/', function () {
-        return view('page.index', ['breadcrumb' => 'Home']);
+        return view('visitor.home.index', ['breadcrumb' => 'Home']);
     });
     Route::get('/fashion', function () {
-        return view('page.fashion', ['breadcrumb' => 'Fassion']);
+        return view('visitor.products.fashion', ['breadcrumb' => 'Fassion']);
     });
     Route::get('/necklace', function () {
-        return view('page.necklace', ['breadcrumb' => 'Necklace']);
+        return view('visitor.products.necklace', ['breadcrumb' => 'Necklace']);
     });
     Route::get('/contact_us', function () {
-        return view('page.contact_us', ['breadcrumb' => 'Contact Us']);
+        return view('visitor.contact_us.contact_us', ['breadcrumb' => 'Contact Us']);
     });
     // Route::get('/blog',function(){ return view('page.blog',['breadcrumb'=>'Blog','data'=>App\Blog::paginate(3)]);  });
     Route::get('/blog/{category?}', 'BlogController@index');
 
     Route::get('blog_detail/{blog_id}',function($blog_id){
-        return view('page.blog_detail', ['breadcrumb' => 'Blog','data'=>App\Blog::whereId($blog_id)->first()]);
+        return view('visitor.blog.blog_detail', ['breadcrumb' => 'Blog','data'=>App\Blog::whereId($blog_id)->first()]);
+    });
+
+    //PRODUCT
+    Route::get('product/{category}',function($category){
+        $data = App\Products::whereCategory($category)->get();
+        $breadcrumb  = App\Category::whereCategory_id2($category)->first()->category_name;
+        return view('visitor.products.products', ['breadcrumb' => $breadcrumb,'data'=>$data]);
     });
 
 

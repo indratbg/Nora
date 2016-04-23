@@ -31,11 +31,9 @@
           href="{!! asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}">
     <!-- DataTables -->
     <link rel="stylesheet" href="{!! asset('public/admin/plugins/datatables/dataTables.bootstrap.css') !!}">
-    <style>
-        .content-wrapper, .right-side {
-            background-color: #ffffff;
-        }
-    </style>
+    {{--Add css--}}
+    <link rel="stylesheet" href="{!! asset('public/admin/dist/css/add.css') !!}">
+
 </head>
 
 <body>

@@ -47,9 +47,9 @@
 
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <img src="{!! asset('storage/app/public/product/'.$image->filename) !!}"
+                        <a href="javacript:void(0)" data-toggle="modal" data-target="#myModal-{{ $x }}"> <img class="image img-thumbnail" src="{!! asset('storage/app/public/product/'.$image->filename) !!}"
                              alt="{{ $image->original_filename }}"/>
-
+                        </a>
                         <div class="caption">
                             <button href="javascript:void(0)" onclick="delete_image('{{ $image->id_product }}','{{ $image->filename }}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                             <button class="btn btn-dropbox" data-toggle="modal" data-target="#myModal-{{ $x }}"><i
@@ -68,7 +68,7 @@
                                 <h4 class="modal-title" id="myModalLabel">{{ $image->original_filename }}</h4>
                             </div>
                             <div class="thumbnail">
-                                <img class="image img-rounded"
+                                <img class="img-rounded"
                                      src="{!! asset('storage/app/public/product/'.$image->filename) !!}"
                                      alt="{{ $image->original_filename }}"/>
                             </div>
