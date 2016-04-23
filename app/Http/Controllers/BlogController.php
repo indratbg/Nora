@@ -10,6 +10,7 @@ use Response;
 use View;
 use Carbon\Carbon as Carbon;
 
+
 class BlogController extends Controller
 {
     /**
@@ -102,7 +103,23 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $validator = Validator::make(Request::all(),Blog::$rules );
+        if ($validator->fails()) {
+            return redirect('admin/edit_article/'.$id)->withInput()->withErrors($validator);
+        }
+        $post_at = Request::input('post_at');
+        if (Carbon::createFromFormat('d/m/Y', $post_at)) $post_at = Carbon::createFromFormat('d/m/Y', $post_at)->format('Y-m-d');
+
+        $model = Blog::find($id);
+        $model->title = Request::input('title');
+        $model->subtitle = Request::input('subtitle');
+        $model->post_at = $post_at;
+        $model->body = Request::input('body');
+        $model->category = Request::input('category');
+        $model->save();
+        return Redirect::to('admin/list_article');
+
     }
 
     /**
@@ -113,6 +130,6 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Blog::find($id)->delete();
     }
 }

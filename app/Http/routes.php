@@ -34,10 +34,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => ['admin']], function () {
 
         Route::get('/dashboard', function () {
-            return view('admin.page.index', ['title' => 'Dashboard']);
+            return view('admin.page.administrator.index', ['title' => 'Dashboard']);
         });
         Route::get('/dashboard2', function () {
-            return view('admin.page.index2', ['title' => 'Dashboard 2']);
+            return view('admin.page.administrator.index2', ['title' => 'Dashboard 2']);
         });
         Route::get('logout_admin', 'AdminController@logoutAdmin');
 
@@ -45,17 +45,17 @@ Route::group(['middleware' => ['web']], function () {
         //Products
         Route::get('admin/list_products', function () {
             $data = App\Products::whereStatus('active')->get();
-            return view('admin.page.list_products', ['title' => 'List Products', 'data' => $data]);
+            return view('admin.page.products.list_products', ['title' => 'List Products', 'data' => $data]);
         });
         Route::get('admin/edit_product/{id_product}',function($id_product){
             $data = App\Products::whereId_product($id_product)->first();
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)) $data->post_date_from = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)->format('d/m/Y');
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)) $data->post_date_to = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)->format('d/m/Y');
-            return view('admin.page.edit_product',['title'=>'Update Product','data'=>$data]);
+            return view('admin.page.products.edit_product',['title'=>'Update Product','data'=>$data]);
         });
         Route::get('admin/create_product', function () {
             $category_cd = App\Category::whereCategory_id1("product")->orderBy('category_name','asc')->get();
-            return view('admin.page.create_product', ['title' => 'Create Product','category_cd'=>$category_cd]);
+            return view('admin.page.products.create_product', ['title' => 'Create Product','category_cd'=>$category_cd]);
         });
         Route::post('admin/create_product', 'ProductsController@store');
         Route::get('admin/delete_product/{id_product}','ProductsController@destroy');
@@ -65,7 +65,7 @@ Route::group(['middleware' => ['web']], function () {
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)) $data->post_date_from = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)->format('d-M-Y');
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)) $data->post_date_to = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)->format('d-M-Y');
             $images = App\Picture::where('id_product','=',$id_product)->get();
-            return view('admin.page.view_product', ['title' => 'View Product ' . $data->product_name, 'data' => $data,'images'=>$images]);
+            return view('admin.page.products.view_product', ['title' => 'View Product ' . $data->product_name, 'data' => $data,'images'=>$images]);
         });
         Route::post('admin/update_product/{id_product}','ProductsController@update');
         
@@ -73,13 +73,19 @@ Route::group(['middleware' => ['web']], function () {
         // Article
         Route::get('admin/list_article', function () {
             $data = App\Blog::orderBy('post_at','desc')->get();
-            return view('admin.page.list_article', ['title' => 'List Article','data'=>$data]);
+            return view('admin.page.blogs.list_article', ['title' => 'List Article','data'=>$data]);
         });
-
+        Route::get('admin/edit_article/{id}',function($id){
+            $data = App\Blog::findorfail($id);
+            if (DateTime::createFromFormat('Y-m-d', $data->post_at)) $data->post_at = DateTime::createFromFormat('Y-m-d', $data->post_at)->format('d/m/Y');
+            return view('admin.page.blogs.edit_article', ['title' => 'Edit Article','data'=>$data]);
+        });
+        Route::post('admin/update_article/{id}','BlogController@update');
+        Route::get('admin/delete_article/{id}','BlogController@destroy');
 
         Route::get('admin/create_article', function () {
             $category_cd = App\Category::whereCategory_id1('article')->get();
-            return view('admin.page.create_article', ['title' => 'Create Article','category_cd'=>$category_cd]);
+            return view('admin.page.blogs.create_article', ['title' => 'Create Article','category_cd'=>$category_cd]);
         });
         Route::post('admin/create_article', ['as' => 'create_acticle', 'uses' => 'BlogController@store']);
 
@@ -87,18 +93,21 @@ Route::group(['middleware' => ['web']], function () {
 
         // Profile Admin
         Route::get('admin/profile', function () {
-            return view('admin.page.profile_admin', ['title' => 'Profile Admin']);
+            return view('admin.page.administrator.profile_admin', ['title' => 'Profile Admin']);
         });
         //CATEGORY
         Route::get('admin/list_category',function(){
             $data = App\Category::orderBy('created_at','desc')->get();
-            return view('admin.page.list_category',['title'=>'List Category','data'=>$data]);
+            return view('admin.page.category.list_category',['title'=>'List Category','data'=>$data]);
         });
 
         Route::post('admin/add_category','CategoryController@store');
         Route::get('admin/delete_category/{id}','CategoryController@destroy');
         Route::get('admin/edit_category/{id}','CategoryController@edit');
         Route::post('admin/update_category','CategoryController@update');
+
+        //Image
+        Route::get('admin/view_product/delete_image/{id_product}/{filename}','PictureController@destroy');
 
     });
 

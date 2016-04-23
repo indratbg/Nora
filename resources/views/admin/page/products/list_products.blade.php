@@ -1,7 +1,11 @@
 @extends('admin.layout.admin_template')
 
 @section('content')
-    <p id="pesanku"></p>
+
+    <a href="{{ url('/admin/create_product') }}" class="btn btn-success"><i class="fa fa-pencil"></i> Add Product</a>
+    <br/>
+    <br/>
+
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -11,6 +15,7 @@
                         <tr class="info">
                             <td>ID Product</td>
                             <td>Product Name</td>
+                            <td>Category</td>
                             <td>Price</td>
                             <td>Stock</td>
                             <td>On Order</td>
@@ -23,6 +28,7 @@
                             <tr>
                                 <td>{{ $row->id_product }}</td>
                                 <td>{{ $row->product_name }}</td>
+                                <td>{{ Ucfirst(App\Category::whereCategory_id1('product')->whereCategory_id2($row->category)->first()->category_name) }}</td>
                                 <td align="right">{{ number_format($row->price,0,',','.') }}</td>
                                 <td align="right">{{ number_format($row->stock,0,',','.') }}</td>
                                 <td align="right">{{ $row->on_order }}</td>
@@ -45,9 +51,17 @@
 
 
 @endsection
+
+
+<script type="text/javascript" src="{!! asset('public/js/jquery-1.12.0.min.js') !!}"></script>
 <script>
 
-    $('#pesanku').html('thanks');
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        // Code that uses jQuery's $ can follow here.
+        $('#pesanku').html('thanks');
+    });
+
     function delete_product(num) {
         if (confirm('Are you sure want to delete this product?')) {
             $.ajax({
@@ -56,8 +70,8 @@
                 data: {},
                 success: function (response) {
 
-                    console.log(response);
-                    //location.reload();
+                  //  console.log(response);
+                    location.reload();
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

@@ -70,7 +70,8 @@ class ProductsController extends Controller
         $model->status = $request->input('status');
         $model->save();
 
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('image'))
+        {
 
             $files = $request->file('image.*');
             //  var_dump(count($files));die();
@@ -146,9 +147,32 @@ class ProductsController extends Controller
             'category' => $request->input('category'),
             'status' => $request->input('status')
         ]);
+        if ($request->hasFile('image'))
+        {
+            $files = $request->file('image.*');
+            //  var_dump(count($files));die();
+            foreach ($files as $file) {
+                $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
+                $validator = Validator::make(['file' => $file], $rules);
+                if ($validator->fails()) {
+                    return Redirect::to('admin/edit_product')->withInput()->withErrors($validator);
+                }
+
+                $extension = $file->getClientOriginalExtension();
+                Storage::disk('product')->put($file->getFilename() . '.' . $extension, File::get($file));
+                $entry = new Picture();
+                $entry->id_product = $id_product;
+                $entry->filename = $file->getFilename() . '.' . $extension;
+                $entry->mime = $file->getClientMimeType();
+                $entry->original_filename = $file->getClientOriginalName();
+                $entry->save();
+            }
+        }
+
 
         return Redirect::to('admin/list_products')->with('success', 'Successful update product ' . $request->input('product_name'));
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -158,6 +182,6 @@ class ProductsController extends Controller
     public function destroy($id_product)
     {
         Products::whereId_product($id_product)->delete();
-       // echo json_encode(['sukses'=>'SUkses bro']);
+        // echo json_encode(['sukses'=>'SUkses bro']);
     }
 }

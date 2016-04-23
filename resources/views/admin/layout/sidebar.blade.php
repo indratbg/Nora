@@ -37,33 +37,19 @@
                 </ul>
             </li>
 
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-file-text-o"></i>
-                    <span>Article</span>
+            <li><a href="{{ url('admin/list_article') }}"><i class="fa fa-book"></i><span>List Article</span>
                     <span class="label label-primary pull-right">{{ App\Blog::count()}} </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ url('/admin/create_article') }}"><i class="fa fa-pencil"></i> Post Article</a></li>
-                    <li><a href="{{ url('/admin/list_article') }}"><i class="fa fa-list"></i>List Article</a></li>
-                </ul>
             </li>
 
-
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-product-hunt"></i>
-                    <span>Product</span>
-                    <span class="label label-primary pull-right">{{ App\Products::distinct()->groupby('category')->count()}} </span>
+            <li><a href="{{ url('admin/list_products') }}"><i class="fa fa-shopping-cart"></i> <span>List Product</span>
+                    <span class="label label-primary pull-right">{{ App\Products::count()}} </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ url('/admin/create_product') }}"><i class="fa fa-pencil"></i> Post Product</a></li>
-                    <li><a href="{{ url('/admin/list_products') }}"><i class="fa fa-th-list"></i> List Product</a></li>
-                    {{--<li><a href="{{ url('/admin/list_fassion') }}"><i class="fa fa-circle-o"></i> Fassion</a></li>--}}
-                </ul>
             </li>
-            <li><a href="{{ url('admin/list_category') }}"><span class="fa fa-th-list"></span>Category</a></li>
-
+            <li><a href="{{ url('admin/list_category') }}"><i class="fa fa-list"></i><span>Category</span>
+                    <span class="label label-primary pull-right">{{ App\Category::count()}} </span>
+                </a>
+            </li>
 
             <li class="header">LABELS</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i><span>Important</span></a></li>

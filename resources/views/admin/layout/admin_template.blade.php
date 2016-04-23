@@ -31,11 +31,16 @@
           href="{!! asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}">
     <!-- DataTables -->
     <link rel="stylesheet" href="{!! asset('public/admin/plugins/datatables/dataTables.bootstrap.css') !!}">
-
+    <style>
+        .content-wrapper, .right-side {
+            background-color: #ffffff;
+        }
+    </style>
 </head>
+
 <body>
 
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini fixed sidebar-collapse ">
 <div class="wrapper">
 
     <!-- Header -->
@@ -78,10 +83,12 @@
 </div> <!--end wrapper-->
 
 
+
 <!-- jQuery 2.1.4 -->
 <script src="{!! asset('public/admin/plugins/jQuery/jQuery-2.1.4.min.js') !!}"></script>
 
 <script type="text/javascript" src="{!! asset('public/js/jquery-1.12.0.min.js') !!}"></script>
+
 <!-- Bootstrap 3.3.5 -->
 <script src="{!! asset('public/admin/bootstrap/js/bootstrap.min.js') !!}"></script>
 <!-- Slimscroll -->
@@ -103,6 +110,7 @@
 </body>
 </html>
 <script type="text/javascript">
+
     $(".datepicker").datepicker({'format': 'dd/mm/yyyy'});
     $('#list_products , #list_article, #list_category').DataTable({
         "paging": true,
