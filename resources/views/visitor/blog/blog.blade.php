@@ -23,7 +23,7 @@
          <div class="posts">
             @foreach($data as $row)
             <h2 class=""><a href="{{ url('blog_detail/'.$row->id) }}" class="link"> {{ $row->title  }}<small>{{ '&emsp;'.$row->subtitle  }}</small></a></h2>
-            <small><span class="fa fa-clock-o">&nbsp;Created at &nbsp;</span>{{ $row->created_at }}</small>
+            <small><span class="fa fa-clock-o">&nbsp;Created at &nbsp;</span>{{ $row->created_at->diffForHumans() }}</small>
             <p>{!! substr($row->body,0,500) !!}<a href="{{ url('blog_detail/'.$row->id) }}"> [....]</a></p>
                 <div class="clearfix"></div>
             @endforeach
@@ -59,7 +59,7 @@
             $('.posts').html(data);
             location.hash = page;
         }).fail(function () {
-            alert('Posts could not be loaded.');
+            console.log('Posts could not be loaded.');
         });
     }
     </script>

@@ -31,7 +31,7 @@ class CategorySeeder extends Seeder
             'category_id1' => 'product',
             'category_id2' => '001',
             'category_id3' => '',
-            'category_name'=>'jewelry',
+            'category_name'=>'Jewelry',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
         ]);
@@ -39,7 +39,7 @@ class CategorySeeder extends Seeder
             'category_id1' => 'product',
             'category_id2' => '002',
             'category_id3' => '',
-            'category_name'=>'t-shirt',
+            'category_name'=>'T-shirt',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
         ]);
@@ -47,7 +47,7 @@ class CategorySeeder extends Seeder
             'category_id1' => 'product',
             'category_id2' => '003',
             'category_id3' => '',
-            'category_name'=>'dress',
+            'category_name'=>'Dress',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
         ]);
@@ -55,7 +55,7 @@ class CategorySeeder extends Seeder
             'category_id1' => 'product',
             'category_id2' => '004',
             'category_id3' => '',
-            'category_name'=>'necklace',
+            'category_name'=>'Necklace',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
         ]);
@@ -63,7 +63,7 @@ class CategorySeeder extends Seeder
             'category_id1' => 'product',
             'category_id2' => '005',
             'category_id3' => '',
-            'category_name'=>'ring',
+            'category_name'=>'Ring',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
         ]);
@@ -71,7 +71,7 @@ class CategorySeeder extends Seeder
             'category_id1' => 'product',
             'category_id2' => '006',
             'category_id3' => '',
-            'category_name'=>'bracelet',
+            'category_name'=>'Bracelet',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
         ]);

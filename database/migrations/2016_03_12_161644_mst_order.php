@@ -16,6 +16,8 @@ class MstOrder extends Migration
             $table->string('id_product',10);
             $table->string('order_id',10);
             $table->string('order_by',50);
+            $table->integer('qty');
+            $table->integer('price');
             $table->integer('total_payment');
             $table->string('address1',50);
             $table->string('address2',50);

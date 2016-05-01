@@ -86,6 +86,7 @@ class ProductsController extends Controller
                 Storage::disk('product')->put($file->getFilename() . '.' . $extension, File::get($file));
                 $entry = new Picture();
                 $entry->id_product = $id_product;
+                $entry->type = 'product';
                 $entry->filename = $file->getFilename() . '.' . $extension;
                 $entry->mime = $file->getClientMimeType();
                 $entry->original_filename = $file->getClientOriginalName();
@@ -162,6 +163,7 @@ class ProductsController extends Controller
                 Storage::disk('product')->put($file->getFilename() . '.' . $extension, File::get($file));
                 $entry = new Picture();
                 $entry->id_product = $id_product;
+                $entry->type = 'product';
                 $entry->filename = $file->getFilename() . '.' . $extension;
                 $entry->mime = $file->getClientMimeType();
                 $entry->original_filename = $file->getClientOriginalName();

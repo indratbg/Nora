@@ -29,7 +29,7 @@ class BlogController extends Controller
 
         $posts = Blog::where('category', 'like', "%$category%")->orderBy('created_at', 'desc')->paginate(10);
         if (Request::ajax()) {
-            return Response::json(View::make('visistor.blog.blog_ajax', array('breadcrumb' => 'Blog', 'data' => $posts))->render());
+            return Response::json(View::make('visitor.blog.blog_ajax', array('breadcrumb' => 'Blog', 'data' => $posts))->render());
         }
         return View::make('visitor.blog.blog', array('data' => $posts, 'breadcrumb' => 'Blog'));
 

@@ -32,6 +32,9 @@
           href="{!! asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}">
 {{--Product--}}
     <link rel="stylesheet" href="{!! asset('public/css/product.css') !!}" type="text/css">
+
+
+
 </head>
 
 <body>
@@ -55,7 +58,7 @@
 
     @yield('content')
 
-    @extends('layout.footer')
+    @include('layout.footer')
 
 </div>
 
@@ -63,5 +66,16 @@
 <script type="text/javascript" src="{!! asset('public/js/bootstrap.js') !!}"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{!! asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') !!}"></script>
+
 </body>
 </html>
+
+<script>
+    $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        // CKEDITOR.replace('editor1');
+        //bootstrap WYSIHTML5 - text editor
+        $(".editor").wysihtml5();
+    });
+</script>

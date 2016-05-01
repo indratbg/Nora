@@ -2,7 +2,8 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -19,10 +20,12 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Product <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('/fashion') }}">Fassion</a></li>
-                        <li><a href="{{ url('/necklace') }}">Necklace</a></li>
+                        @foreach(App\Category::whereCategory_id1('product')->orderBy('category_name','asc')->get() as $row)
+                            <li><a href="{{ url('/product/'.strtolower($row->category_name)) }}">{{ $row->category_name }}</a></li>
+                        @endforeach
 
                     </ul>
                 </li>
@@ -33,7 +36,7 @@
                 <div class="form-group">
                     <input type="text" class=" form-control" placeholder="Search">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span> </button>
             </form>
 
             <ul class="nav navbar-nav navbar-right">
@@ -48,14 +51,18 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/my_account') }}"><i class="fa fa-btn fa-user"></i>&nbsp;My Account</a></li>
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>&nbsp;Logout</a></li>
+                            <li><a href="{{ url('/my_account') }}"><i class="fa fa-btn fa-user"></i>&nbsp;My Account</a>
+                            </li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>&nbsp;Logout</a>
+                            </li>
                         </ul>
                     </li>
                 @endif
 
-                <li><a href="https://www.facebook.com/sharer/sharer.php?u={{url('/')}}" target="_blank"   ><i class="fa fa-facebook-official fa-lg"></i></a></li>
-                <li><a href="https://twitter.com/home?status={{url('/')}}" class="btn-link"><i class="fa fa-twitter fa-lg"></i></a></li>
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u={{url('/')}}" target="_blank"><i
+                                class="fa fa-facebook-official fa-lg"></i></a></li>
+                <li><a href="https://twitter.com/home?status={{url('/')}}" class="btn-link"><i
+                                class="fa fa-twitter fa-lg"></i></a></li>
                 <li>&emsp;&emsp;</li>
             </ul>
 

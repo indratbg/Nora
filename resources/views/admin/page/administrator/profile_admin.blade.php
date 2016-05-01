@@ -3,3 +3,4 @@
 @section('content')
 
 @endsection
+@include('admin.layout.script')

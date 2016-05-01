@@ -81,6 +81,7 @@
 </div> <!--end wrapper-->
 
 
+{{--
 
 <!-- jQuery 2.1.4 -->
 <script src="{!! asset('public/admin/plugins/jQuery/jQuery-2.1.4.min.js') !!}"></script>
@@ -104,6 +105,7 @@
 <script src="{!! asset('public/admin/plugins/datatables/jquery.dataTables.min.js') !!}"></script>
 <script src="{!! asset('public/admin/plugins/datatables/dataTables.bootstrap.min.js') !!}"></script>
 
+--}}
 
 </body>
 </html>

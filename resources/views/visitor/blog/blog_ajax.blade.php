@@ -2,7 +2,7 @@
          <div class="posts">
             @foreach($data as $row)
             <h2 class=""><a href="#" class="link"> {{ $row->title  }}<small>{{ '&emsp;'.$row->subtitle  }}</small></a></h2>
-            <small>{{ "Create at : " .$row->created_at }}</small>
+            <small>{{ "Create at : " .$row->created_at->diffForHumans() }}</small>
             <p>{{ $row->body }}</p>
             @endforeach
 

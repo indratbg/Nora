@@ -12,5 +12,7 @@ class Blog extends Model
     public static $rules=  ['title' => 'required|min:10',
         'body' => 'required|min:20',
         'category' => 'required'];
+    // Carbon instance fields
+    protected $dates = ['created_at', 'updated_at'];
 
 }

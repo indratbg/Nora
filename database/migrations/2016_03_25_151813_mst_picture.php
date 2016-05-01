@@ -14,10 +14,13 @@ class MstPicture extends Migration
     {
         Schema::create('mst_picture', function (Blueprint $table) {
             $table->string('id_product',10);
+            $table->string('type',20);
+            $table->string('title');
+            $table->string('desc');
             $table->string('filename');
             $table->string('mime');
             $table->string('original_filename');
-            //$table->string('path',255);
+
             $table->timestamps();
         });
     }

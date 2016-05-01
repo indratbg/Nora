@@ -1,50 +1,32 @@
-
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
+    <?php $x = 0;?>
+
+            <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        @foreach(App\Picture::whereType('slide')->get() as $row)
+
+            <li data-target="#carousel-example-generic" data-slide-to="$x" class="{{ $x=='0'?'active':'' }}"></li>
+            <?php $x++;?>
+        @endforeach
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="{{ asset('img/slide/slide1.jpg') }}" class="slide" alt="Necklace Black Roll">
+        <?php $x = 0;?>
+        @foreach(App\Picture::whereType('slide')->get() as $row)
+            <div class="item {{ $x=='0'?'active':''  }}">
+                <img src="{{ asset('storage/app/public/slider/'.$row->filename) }}" class="slide" alt="{{ $row->title }}">
 
-            <div class="carousel-caption">
-                <h2>Necklace Black Roll</h2>
+                <div class="carousel-caption">
+                    <h2>{{ $row->title }}</h2>
+                    <p>{{ $row->desc }}</p>
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <img src="{{ asset('img/slide/slide2.jpg') }}" class="slide"
-                 alt="Gold Necklace">
 
-            <div class="carousel-caption">
-                <h2>Gold Necklace</h2>
-            </div>
-        </div>
-        <div class="item">
-            <img src="{{ asset('img/slide/slide3.jpg') }}" class="slide"
-                 alt="Stainless Necklace">
-            <div class="carousel-caption">
-                <h2>Stainless Necklace</h2>
-            </div>
-        </div>
-        <div class="item">
-            <img src="{{ asset('img/slide/slide4.jpg') }}" class="slide"
-                 alt="Stainless Necklace">
-            <div class="carousel-caption">
-                <h2>East Necklace</h2>
-            </div>
-        </div>
-        <div class="item">
-            <img src="{{ asset('img/slide/slide5.jpg') }}" class="slide"
-                 alt="Stainless Necklace">
-            <div class="carousel-caption">
-                <h2>Model of Necklace</h2>
-            </div>
-        </div>
+            <?php $x++;?>
+        @endforeach
+
+
     </div>
 
     <!-- Controls -->

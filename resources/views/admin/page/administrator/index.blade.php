@@ -60,3 +60,4 @@
             </div><!-- /.row -->
             
 @endsection
+@include('admin.layout.script')

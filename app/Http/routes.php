@@ -26,7 +26,7 @@
 Route::group(['middleware' => ['web']], function () {
     // Admin
     Route::get('/login_admin', function () {
-        return view('admin.page.login_form');
+        return view('admin.page.administrator.login_form');
     });
     Route::post('/login_admin', 'AdminController@showProfile');
 
@@ -109,17 +109,17 @@ Route::group(['middleware' => ['web']], function () {
         //Image
         Route::get('admin/view_product/delete_image/{id_product}/{filename}','PictureController@destroy');
 
+        //Slider
+        Route::get('admin/slider',function(){ return view('admin.page.slider.index',['title'=>'Slider Image']); });
+        Route::get('admin/list_slider','PictureController@list_slider');
+        Route::post('admin/add_slider','PictureController@storeSlider');
+        Route::get('admin/slider/delete/{filename}','PictureController@destroySlider');
     });
 
     //User
     Route::get('/', function () {
-        return view('visitor.home.index', ['breadcrumb' => 'Home']);
-    });
-    Route::get('/fashion', function () {
-        return view('visitor.products.fashion', ['breadcrumb' => 'Fassion']);
-    });
-    Route::get('/necklace', function () {
-        return view('visitor.products.necklace', ['breadcrumb' => 'Necklace']);
+        $recent_product = App\Products::take(3)->get();
+        return view('visitor.home.index', ['breadcrumb' => 'Home','recent_product'=>$recent_product ]);
     });
     Route::get('/contact_us', function () {
         return view('visitor.contact_us.contact_us', ['breadcrumb' => 'Contact Us']);
@@ -133,14 +133,19 @@ Route::group(['middleware' => ['web']], function () {
 
     //PRODUCT
     Route::get('product/{category}',function($category){
-        $data = App\Products::whereCategory($category)->get();
-        $breadcrumb  = App\Category::whereCategory_id2($category)->first()->category_name;
-        return view('visitor.products.products', ['breadcrumb' => $breadcrumb,'data'=>$data]);
+        $category_id2 = App\Category::whereCategory_name($category)->first()->category_id2;
+        $data = App\Products::whereCategory($category_id2)->orderBy('updated_at','desc')->paginate();
+        return view('visitor.products.products', ['breadcrumb' => $category,'data'=>$data]);
+    });
+
+    Route::get('product/detail/{id_product}',function($id_product){
+        $data = App\Products::whereId_product($id_product)->firstorFail();
+        return view('visitor.products.detail',['breadcrumb' => $data->product_name,'data'=>$data]);
     });
 
 
     Route::get('/my_account', function () {
-        return view('page.my_account', ['breadcrumb' => 'My Account']);
+        return view('visitor.user.my_account', ['breadcrumb' => 'My Account']);
     });
 
     Route::auth();

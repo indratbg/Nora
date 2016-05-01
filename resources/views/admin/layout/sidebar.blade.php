@@ -50,6 +50,8 @@
                     <span class="label label-primary pull-right">{{ App\Category::count()}} </span>
                 </a>
             </li>
+            <li><a href="{{ url('admin/slider') }}"><i class="fa fa-image"></i><span>Slider</span> </a>
+            </li>
 
             <li class="header">LABELS</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i><span>Important</span></a></li>

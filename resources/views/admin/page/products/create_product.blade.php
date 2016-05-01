@@ -140,3 +140,4 @@
     </form>
 
 @endsection
+@include('admin.layout.script')

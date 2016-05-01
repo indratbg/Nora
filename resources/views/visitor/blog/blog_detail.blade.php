@@ -22,7 +22,8 @@
             <h2 class=""> {{ $data->title  }}
                 <small>{{ '&emsp;'.$data->subtitle  }}</small>
             </h2>
-            <small><span class="fa fa-clock-o">&nbsp;Created at &nbsp;</span>{{ $data->created_at }}</small>
+            <small><span class="fa fa-clock-o">&nbsp;Created at &nbsp;</span>{{ $data->created_at->diffForHumans() }}</small>
+
             <p>{!! $data->body !!} </p>
         </div>
     </div>
