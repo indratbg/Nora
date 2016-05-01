@@ -51,7 +51,8 @@ Route::group(['middleware' => ['web']], function () {
             $data = App\Products::whereId_product($id_product)->first();
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)) $data->post_date_from = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_from)->format('d/m/Y');
             if (DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)) $data->post_date_to = DateTime::createFromFormat('Y-m-d H:i:s', $data->post_date_to)->format('d/m/Y');
-            return view('admin.page.products.edit_product',['title'=>'Update Product','data'=>$data]);
+            $images = App\Picture::where('id_product','=',$id_product)->get();
+            return view('admin.page.products.edit_product',['title'=>'Update Product','data'=>$data,'images'=>$images]);
         });
         Route::get('admin/create_product', function () {
             $category_cd = App\Category::whereCategory_id1("product")->orderBy('category_name','asc')->get();
@@ -118,7 +119,7 @@ Route::group(['middleware' => ['web']], function () {
 
     //User
     Route::get('/', function () {
-        $recent_product = App\Products::take(3)->get();
+        $recent_product = App\Products::orderBy('created_at','desc')->take(3)->get();
         return view('visitor.home.index', ['breadcrumb' => 'Home','recent_product'=>$recent_product ]);
     });
     Route::get('/contact_us', function () {

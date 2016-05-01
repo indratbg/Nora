@@ -3,3 +3,6 @@
 @section('content')
 
 @endsection
+@section('script')
+    @include('layout.script')
+@stop

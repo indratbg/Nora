@@ -28,3 +28,6 @@
 </div>
 
 @endsection
+@section('script')
+    @include('layout.script')
+@stop

@@ -25,6 +25,11 @@
             <small><span class="fa fa-clock-o">&nbsp;Created at &nbsp;</span>{{ $data->created_at->diffForHumans() }}</small>
 
             <p>{!! $data->body !!} </p>
+            <a href="{{ url('blog') }}" class="btn btn-primary">Back</a>
         </div>
     </div>
+
 @endsection
+@section('script')
+    @include('layout.script')
+@stop

@@ -1,7 +1,15 @@
-.price{
-    font-size: 15pt;
+.price {
+    font-size: 13pt;
     font-weight: bold;
 }
-.pagination{
+
+.pagination {
     float: right;
+}
+
+#storeName {
+ font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body{
+    font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
