@@ -20,10 +20,11 @@
                 <div class="form-group">
                     <input type="file" accept="image/png, image/jpeg, image/gif" name="image" class="btn btn-github"
                            multiple>
+                    <div class="well well-sm">900 X 500</div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
-                        <input type="submit" value="SAVE" class="btn btn-primary">
+                        <input type="submit" value="SAVE" class="btn btn-google">
 
 
                     </div>

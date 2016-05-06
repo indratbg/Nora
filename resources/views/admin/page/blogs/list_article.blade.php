@@ -9,11 +9,11 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <div class="box">
-                <div class="box-body">
+            {{--<div class="box">--}}
+                {{--<div class="box-body">--}}
                     <table id="list_article" class="table table-condensed table-hover " >
                         <thead>
-                        <tr class="info">
+                        <tr class="bg-primary">
                             <td>Title</td>
                             <td>Subtitle</td>
                             <td>Category</td>
@@ -41,8 +41,8 @@
                         @endforeach
                         </tbody>
                     </table>
-                </div>
-            </div>
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
     </div>
 @endsection

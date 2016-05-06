@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Intervention\Image\Facades\Image;
 use Response;
 use App\Picture;
 use View;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon as Carbon;
+
 
 class PictureController extends Controller
 {
@@ -33,10 +35,7 @@ class PictureController extends Controller
 
     public function storeSlider(Request $request)
     {
-
-
-        if($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             Storage::disk('slider')->put($file->getFilename() . '.' . $extension, File::get($file));
@@ -48,10 +47,16 @@ class PictureController extends Controller
             $model->mime = $file->getClientMimeType();
             $model->original_filename = $file->getClientOriginalName();
             $model->save();
+
+            //Resize Image
+            $filename  ='xxxx' . '.' . $file->getClientOriginalExtension();
+            $path = 'storage/app/public/product/thumb/'.$filename;
+            Image::make($file->getRealPath())->resize(200, 200)->save($path);
         }
 
         return redirect('admin/slider');
     }
+
     public function destroySlider($filename)
     {
         Picture::whereFilename($filename)->delete();

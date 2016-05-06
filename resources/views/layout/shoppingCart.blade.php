@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-5">
-        <h1 id="storeName"><a href="{{url('/')}}"> Toko kita</a></h1>
+        <p class="text-diamond"><a href="{{url('/')}}"> Toko kita</a></p>
     </div>
     <div class="col-md-6">
         <div class="text-right">

@@ -116,7 +116,7 @@
 <script type="text/javascript">
 
     $(".datepicker").datepicker({'format': 'dd/mm/yyyy'});
-    $('#list_article, #list_category').DataTable({
+    $(' #list_article, #list_category').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,

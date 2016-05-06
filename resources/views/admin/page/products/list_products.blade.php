@@ -1,11 +1,11 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="box">
-            <div class="box-body">
+        {{--<div class="box">--}}
+            {{--<div class="box-body">--}}
                 <table id="list_products" class="table table-condensed table-hover ">
                     <thead>
-                    <tr class="info">
+                    <tr class="bg-primary">
                         <td>ID Product</td>
                         <td>Product Name</td>
                         <td>Category</td>
@@ -37,8 +37,8 @@
                     @endforeach
                     </tbody>
                 </table>
-            </div>
-        </div>
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
 </div>
 

@@ -13,3 +13,36 @@
 body{
     font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+@font-face {
+    font-family: diamont;
+    src: url('../fonts/diamont.ttf');
+}
+@font-face {
+    font-family: candy;
+    src: url('../fonts/candy.otf');
+}
+@font-face {
+    font-family: squimpy;
+    src: url('../fonts/squimpy.otf');
+}
+@font-face {
+    font-family: variety;
+    src: url('../fonts/Variety.ttf');
+}
+@font-face {
+    font-family: bullpen hv it;
+    src: url('../fonts/bullpen hv it.ttf');
+}
+@font-face {
+    font-family: bullpen hv;
+    src: url('../fonts/bullpen hv.ttf');
+}
+@font-face {
+    font-family: bullpen d;
+    src: url('../fonts/bullpen 3d.ttf');
+}
+.text-diamond{
+    font-family: "bullpen d";
+    font-size:30pt;
+
+}

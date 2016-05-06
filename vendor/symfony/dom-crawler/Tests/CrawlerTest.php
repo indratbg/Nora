@@ -645,13 +645,13 @@ EOF
         $this->assertInstanceOf('Symfony\\Component\\DomCrawler\\Crawler', $crawler, '->selectLink() returns a new instance of a crawler');
 
         $this->assertCount(1, $crawler->selectLink('Fabien\'s Foo'), '->selectLink() selects links by the node values');
-        $this->assertCount(1, $crawler->selectLink('Fabien\'s Bar'), '->selectLink() selects links by the alt attribute of a clickable img');
+        $this->assertCount(1, $crawler->selectLink('Fabien\'s Bar'), '->selectLink() selects links by the alt attribute of a clickable image');
 
         $this->assertCount(2, $crawler->selectLink('Fabien"s Foo'), '->selectLink() selects links by the node values');
-        $this->assertCount(2, $crawler->selectLink('Fabien"s Bar'), '->selectLink() selects links by the alt attribute of a clickable img');
+        $this->assertCount(2, $crawler->selectLink('Fabien"s Bar'), '->selectLink() selects links by the alt attribute of a clickable image');
 
         $this->assertCount(1, $crawler->selectLink('\' Fabien"s Foo'), '->selectLink() selects links by the node values');
-        $this->assertCount(1, $crawler->selectLink('\' Fabien"s Bar'), '->selectLink() selects links by the alt attribute of a clickable img');
+        $this->assertCount(1, $crawler->selectLink('\' Fabien"s Bar'), '->selectLink() selects links by the alt attribute of a clickable image');
 
         $this->assertCount(4, $crawler->selectLink('Foo'), '->selectLink() selects links by the node values');
         $this->assertCount(4, $crawler->selectLink('Bar'), '->selectLink() selects links by the node values');
