@@ -14,6 +14,7 @@ use App\Picture;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 //use Carbon\Carbon as Carbon;
 
 class ProductsController extends Controller
@@ -88,7 +89,8 @@ class ProductsController extends Controller
                 }
 
                 $extension = $file->getClientOriginalExtension();
-                Storage::disk('product')->put($file->getFilename() . '.' . $extension, File::get($file));
+                $filename = $file->getFilename() . '.' . $extension;
+                Storage::disk('product')->put($filename, File::get($file));
                 $entry = new Picture();
                 $entry->id_product = $id_product;
                 $entry->type = 'product';
@@ -96,6 +98,12 @@ class ProductsController extends Controller
                 $entry->mime = $file->getClientMimeType();
                 $entry->original_filename = $file->getClientOriginalName();
                 $entry->save();
+
+                //Resize Image
+                //$filename  ='xxxx' . '.' . $file->getClientOriginalExtension();
+                $path = 'storage/app/public/product/thumb/'.$filename;
+                Image::make($file->getRealPath())->resize(300, 250)->save($path);
+
             }
         }
         return Redirect::to('admin/products')->with('success', ucfirst(Request::input('product_name')) . ' has been saved');
@@ -154,7 +162,7 @@ class ProductsController extends Controller
         if ($request->hasFile('image'))
         {
             $files = $request->file('image.*');
-            //  var_dump(count($files));die();
+
             foreach ($files as $file) {
                 $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
                 $validator = Validator::make(['file' => $file], $rules);
@@ -171,11 +179,13 @@ class ProductsController extends Controller
                 $entry->mime = $file->getClientMimeType();
                 $entry->original_filename = $file->getClientOriginalName();
                 $entry->save();
+
+
             }
         }
 
 
-        return Redirect::to('admin/list_products')->with('success', 'Successful update product ' . $request->input('product_name'));
+        return Redirect::to('admin/products')->with('success', 'Successful update product ' . $request->input('product_name'));
     }
 
     /**
