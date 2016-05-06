@@ -50,20 +50,21 @@
         <div class="modal-content">
 
             <div class="modal-body">
+
                 <form id="form_category" class="form-horizontal" action="javascript:void(0)">
                     {!! csrf_field() !!}
                     <input type="hidden" name="id" id="id"/>
                     <fieldset>
                         <!-- Form Name -->
                         <legend id="title">Add Category</legend>
-
+                        <div id="error_msg"></div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="category_id1">Parameter 1</label>
 
                             <div class="col-md-4">
                                 <input id="category_id1" name="category_id1" type="text" placeholder="Parameter 1"
-                                       class="form-control input-md" required="">
+                                       class="form-control input-md">
 
                             </div>
                         </div>
@@ -74,7 +75,7 @@
 
                             <div class="col-md-4">
                                 <input id="category_cd2" name="category_id2" type="text" placeholder="Parameter 2"
-                                       class="form-control input-md" required="">
+                                       class="form-control input-md">
 
                             </div>
                         </div>
@@ -96,7 +97,7 @@
 
                             <div class="col-md-4">
                                 <input id="category_name" name="category_name" type="text" placeholder="Category Name"
-                                       class="form-control input-md" required="">
+                                       class="form-control input-md">
 
                             </div>
                         </div>
@@ -202,10 +203,22 @@
                 //if success close modal and reload ajax table
                 $('#addCategory').modal('hide');
                 window.location.reload();
-               // reload_table();
+                // reload_table();
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert('Error adding / update data');
+            async: false,
+            error: function (data) {
+                var errors = data.responseJSON;
+
+                errorsHtml = '<div class="alert alert-dismissable alert-danger">' +
+                        '  <button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<ul>';
+
+                $.each(errors, function (key, value) {
+                    errorsHtml += '<li>' + value[0] + '</li>'; //showing only the first error.
+                });
+                errorsHtml += '</ul></di>';
+
+                $('#error_msg').html(errorsHtml);
             }
         });
     }

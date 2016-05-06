@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BlogRequest;
 use Illuminate\Support\Facades\Redirect;
 use Request;
 use App\Blog;
@@ -52,23 +53,9 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogRequest $request)
     {
-
-        $validator = Validator::make(Request::all(),Blog::$rules );
-        if ($validator->fails()) {
-            return redirect('admin/create_article')->withInput()->withErrors($validator);
-        }
-        $post_at = Request::input('post_at');
-        if(Carbon::createFromFormat('d/m/Y',$post_at))$post_at = Carbon::createFromFormat('d/m/Y',$post_at)->format('Y-m-d');
-        $model = new Blog;
-        $model->title = Request::input('title');
-        $model->subtitle = Request::input('subtitle');
-        $model->category = Request::input('category');
-        $model->body = Request::input('body');
-        $model->status = 'A';
-        $model->post_at = $post_at;
-        $model->save();
+        Blog::create(Request::all());
         return redirect('admin/list_article')->with('success', 'The article has been successfully saved.');
     }
 
@@ -101,20 +88,13 @@ class BlogController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogRequest $request, $id)
     {
-
-        $validator = Validator::make(Request::all(),Blog::$rules );
-        if ($validator->fails()) {
-            return redirect('admin/edit_article/'.$id)->withInput()->withErrors($validator);
-        }
-        $post_at = Request::input('post_at');
-        if (Carbon::createFromFormat('d/m/Y', $post_at)) $post_at = Carbon::createFromFormat('d/m/Y', $post_at)->format('Y-m-d');
 
         $model = Blog::find($id);
         $model->title = Request::input('title');
         $model->subtitle = Request::input('subtitle');
-        $model->post_at = $post_at;
+        $model->post_at = Request::input('post_at');
         $model->body = Request::input('body');
         $model->category = Request::input('category');
         $model->save();

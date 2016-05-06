@@ -1,6 +1,6 @@
 <div class="row">
     @foreach($recent_product as $row)
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-4 col- col-md-3">
             <div class="thumbnail">
                 <a href="{{ url('/product/detail/'.$row->id_product) }}">
                     <img class="img-rounded" src="{!! asset('storage/app/public/product/'.
@@ -16,7 +16,8 @@
                             <p class="price">IDR {{ number_format($row->price,0,',','.') }}</p>
                         </div>
                         <div class="col-sm-6 ">
-                            <a href="javascript:void(0)" onclick="addToCart('{{$row->id_product}}}')" class="btn btn-primary pull-right">Buy</a>
+                            <a href="javascript:void(0)" onclick="addToCart('{{$row->id_product}}}')"
+                               class="btn btn-primary pull-right">Buy</a>
                         </div>
                     </div>
                 </div>
@@ -28,8 +29,7 @@
 <script type="text/javascript" src="{!! asset('public/admin/plugins/jQuery/jQuery-2.1.4.min.js') !!}"></script>
 <script>
 
-    function addToCart(id_product)
-    {
+    function addToCart(id_product) {
         $('#on_order').html();
     }
     ;

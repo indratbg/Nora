@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Response;
+use App\Http\Requests\CategoryRequest as CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -36,14 +37,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
+        Category::create($request->all());
+
+      /*
         $model = new Category();
         $model->category_id1 = $request->input('category_id1');
         $model->category_id2 = $request->input('category_id2');
         $model->category_id3 = $request->input('category_id3');
         $model->category_name = $request->input('category_name');
-        $model->save();
+        $model->save();*/
         //return redirect('admin/list_category')->with('success','Successful Save Category');
         echo json_encode(array("success" =>true));
     }

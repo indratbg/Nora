@@ -68,9 +68,13 @@
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <p><strong>{!! Session::get('success') !!}</strong></p>
                 </div>
-
-
             @endif
+                @if(session('error'))
+                    <div class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <p><strong>{!! Session::get('error') !!}</strong></p>
+                    </div>
+                @endif
             @yield('content')
 
         </section><!-- /.content -->

@@ -54,9 +54,9 @@
         }
         }
 
-         body{
+       /*  body{
              background-image: url( {{ asset('img/slide/slide1.jpg') }} );
-         }
+         }*/
     </style>
 
 

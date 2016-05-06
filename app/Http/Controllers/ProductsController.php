@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth As Auth;
+//use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Auth As Auth;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests;
-use Illuminate\Http\Response;
+//use Illuminate\Support\Facades\Session;
+use Request;
+//use Illuminate\Http\Response;
 use App\Products;
 use App\Picture;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use Carbon\Carbon as Carbon;
+//use Carbon\Carbon as Carbon;
 
 class ProductsController extends Controller
 
@@ -48,33 +50,30 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
 
-        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))) $post_date_from = Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))->format('Y-m-d');
-        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))) $post_date_to = Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))->format('Y-m-d');
-        $validator = Validator::make($request->all(), Products::$rules);
-        if ($validator->fails()) {
-            return Redirect::to('admin/create_product')->withInput()->withErrors($validator);
+        try{
+            $model = new Products;
+            $id_product = rand() . substr($request->input('product_name'), 4);
+            $model->id_product = $id_product;
+            $model->product_name = $request->input('product_name');
+            $model->category = $request->input('category');
+            $model->description = $request->input('description');
+            $model->stock = $request->input('stock');
+            $model->price = $request->input('price');
+            $model->post_date_from = $request->input('post_date_from');
+            $model->post_date_to = $request->input('post_date_to');
+            $model->status = $request->input('status');
+            $model->save();
         }
-        $model = new Products;
-        $id_product = rand() . substr($request->input('product_name'), 4);
-        $model->id_product = $id_product;
-        $model->product_name = $request->input('product_name');
-        $model->category = $request->input('category');
-        $model->description = $request->input('description');
-        $model->stock = $request->input('stock');
-        $model->price = $request->input('price');
-        $model->post_date_from = $post_date_from;
-        $model->post_date_to = $post_date_to;
-        $model->status = $request->input('status');
-        $model->save();
+        catch(\PDOException $e){
+            return Redirect::to('admin/create_product')->with('error',$e->getMessage())->withInput();
+        }
 
         if ($request->hasFile('image'))
         {
-
             $files = $request->file('image.*');
-            //  var_dump(count($files));die();
             foreach ($files as $file) {
                 $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
                 $validator = Validator::make(['file' => $file], $rules);
@@ -92,10 +91,8 @@ class ProductsController extends Controller
                 $entry->original_filename = $file->getClientOriginalName();
                 $entry->save();
             }
-
-
         }
-        return Redirect::to('admin/list_products')->with('success', ucfirst($request->input('product_name')) . ' has been saved');
+        return Redirect::to('admin/list_products')->with('success', ucfirst(Request::input('product_name')) . ' has been saved');
 
 
     }
@@ -129,19 +126,19 @@ class ProductsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_product)
-    {
+    public function update(ProductRequest $request, $id_product)
+    {/*
         $validator = Validator::make($request->all(), Products::$rules);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
         if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))) $post_date_from = Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))->format('Y-m-d');
-        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))) $post_date_to = Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))->format('Y-m-d');
+        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))) $post_date_to = Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))->format('Y-m-d');*/
 
         $model = Products::where('id_product', $id_product)->
         update(['product_name' => $request->input('product_name'),
-            'post_date_from' => $post_date_from,
-            'post_date_to' => $post_date_to,
+            'post_date_from' =>$request->input('post_date_from'),
+            'post_date_to' => $request->input('post_date_to'),
             'stock' => $request->input('stock'),
             'price' => $request->input('price'),
             'description' => $request->input('description'),
