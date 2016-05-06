@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Feedback;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Validator;
+//use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
+
 
 class FeedbackController extends Controller
 {
@@ -17,7 +18,9 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        $data = Feedback::get();
+
+         return response()->view('admin.page.testimoni.list_testimoni',['data'=>$data]);
     }
 
     /**
@@ -36,25 +39,15 @@ class FeedbackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\FeedbacksRequest $request)
     {
-        $validator = Validator::make($request->all(),
-            ['name'=>'required',
-            'body'=>'required|min:20',
-            'subject'=>'required']);
-        if($validator->fails())
-        {
-            return Redirect::to('/contact_us')->withInput()->withErrors($validator);
-        }
-
-        $model = new Feedback;
-        $model->name = $request->input('name');
-        $model->email = $request->input('email');
-        $model->subject = $request->input('subject');
-        $model->body = $request->input('body');
-        $model->save();
-
+        Feedback::create($request->all());
         return Redirect::to('/contact_us')->with('success','Thank you for your feedback');
+    }
+    public function storeFeedbackAjax(Requests\FeedbacksRequest $request)
+    {
+        Feedback::create($request->all());
+        echo json_encode(['success'=>true]);
     }
 
     /**
@@ -76,7 +69,7 @@ class FeedbackController extends Controller
      */
     public function edit($id)
     {
-        //
+        echo json_encode(Feedback::find($id));
     }
 
     /**
@@ -86,9 +79,15 @@ class FeedbackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\FeedbacksRequest $request)
     {
-        //
+        $model = Feedback::whereId($request->input('id'))->first();
+        $model->name = $request->input('name');
+        $model->subject = $request->input('subject');
+        $model->email = $request->input('email');
+        $model->body = $request->input('body');
+        $model->save();
+        echo json_encode(['success'=>true]);
     }
 
     /**
@@ -99,6 +98,7 @@ class FeedbackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Feedback::find($id)->delete();
+        echo json_encode(['success'=>true]);
     }
 }

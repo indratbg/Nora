@@ -43,9 +43,9 @@ Route::group(['middleware' => ['web']], function () {
 
 
         //Products
-        Route::get('admin/list_products', function () {
+        Route::get('admin/products', function () {
             $data = App\Products::whereStatus('active')->get();
-            return view('admin.page.products.list_products', ['title' => 'List Products', 'data' => $data]);
+            return view('admin.page.products.index', ['title' => 'List Products', 'data' => $data]);
         });
         Route::get('admin/edit_product/{id_product}', function ($id_product) {
             $data = App\Products::whereId_product($id_product)->first();
@@ -65,7 +65,7 @@ Route::group(['middleware' => ['web']], function () {
             return view('admin.page.products.view_product', ['title' => 'View Product ' . $data->product_name, 'data' => $data, 'images' => $images]);
         });
         Route::post('admin/update_product/{id_product}', 'ProductsController@update');
-
+        Route::get('admin/get_list_product','ProductsController@ajaxList');
 
         // Article
         Route::get('admin/list_article', function () {
@@ -111,6 +111,18 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('admin/list_slider', 'PictureController@list_slider');
         Route::post('admin/add_slider', 'PictureController@storeSlider');
         Route::get('admin/slider/delete/{filename}', 'PictureController@destroySlider');
+
+        //Testimonial
+        Route::get('admin/testimoni', function () {
+           $data =  App\Feedback::all();
+            return view('admin.page.testimoni.index', ['title' => 'Testimonial','data'=>$data]);
+        });
+        Route::post('admin/add_testimoni','FeedbackController@storeFeedbackAjax');
+        Route::get('admin/get_list_testimoni','FeedbackController@index');
+        Route::get('admin/edit_testimoni/{id}','FeedbackController@edit');
+        Route::post('admin/update_testimoni','FeedbackController@update');
+        Route::get('admin/delete_testimoni/{id}','FeedbackController@destroy');
+
     });
 
     //User

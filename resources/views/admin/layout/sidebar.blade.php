@@ -42,7 +42,7 @@
                 </a>
             </li>
 
-            <li><a href="{{ url('admin/list_products') }}"><i class="fa fa-shopping-cart"></i> <span>List Product</span>
+            <li><a href="{{ url('admin/products') }}"><i class="fa fa-shopping-cart"></i> <span>List Product</span>
                     <span class="label label-primary pull-right">{{ App\Products::count()}} </span>
                 </a>
             </li>
@@ -51,6 +51,8 @@
                 </a>
             </li>
             <li><a href="{{ url('admin/slider') }}"><i class="fa fa-image"></i><span>Slider</span> </a>
+            </li>
+            <li><a href="{{ url('admin/testimoni') }}"><i class="fa fa-users"></i><span>Testimonial</span> </a>
             </li>
 
             <li class="header">LABELS</li>

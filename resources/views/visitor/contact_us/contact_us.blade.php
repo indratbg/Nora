@@ -26,31 +26,34 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i> </span>
                         <input type="text" class="form-control" name="name" placeholder="Name"
                                value="{{ old('name') }} ">
-                        @if ($errors->has('name'))
-                            <span class="help-block">
+
+                    </div>
+                    @if ($errors->has('name'))
+                        <span class="help-block">
                             <strong>{{ $errors->first('name') }}</strong>
                         </span>
-                        @endif
-                    </div>
+                    @endif
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i> </span>
                         <input type="email" class="form-control" name="email" placeholder="Email"
                                value="{{ old('email') }}">
-                        @if ($errors->has('email'))
-                            <span class="help-block">
+
+                    </div>
+                    @if ($errors->has('email'))
+                        <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
                         </span>
-                        @endif
-                    </div>
+                    @endif
                     <div class="form-group">
                         <input type="text" class="form-control" name="subject" placeholder="Subject"
                                value="{{ old('subject') }} ">
-                        @if ($errors->has('subject'))
-                            <span class="help-block">
+
+                    </div>
+                    @if ($errors->has('subject'))
+                        <span class="help-block">
                                 <strong>{{ $errors->first('subject') }}</strong>
                             </span>
-                        @endif
-                    </div>
+                    @endif
                     <div class="form-group">
                         <textarea class="form-control" name="body" rows="5">{{ old('body') }}</textarea>
                         @if ($errors->has('body'))

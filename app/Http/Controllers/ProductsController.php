@@ -33,6 +33,12 @@ class ProductsController extends Controller
     {
         //
     }
+    public function ajaxList()
+    {
+        $data = Products::get();
+
+        return response()->view('admin.page.products.list_products',['data'=>$data]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -92,7 +98,7 @@ class ProductsController extends Controller
                 $entry->save();
             }
         }
-        return Redirect::to('admin/list_products')->with('success', ucfirst(Request::input('product_name')) . ' has been saved');
+        return Redirect::to('admin/products')->with('success', ucfirst(Request::input('product_name')) . ' has been saved');
 
 
     }
