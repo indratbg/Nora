@@ -67,7 +67,7 @@
             <label for="category" class="col-sm-2 control-label">Description</label>
 
             <div class="col-sm-10">
-                <textarea class="form-control ckeditor" name="description" >{{ $data->description }}</textarea>
+                <textarea class="form-control ckeditor" name="description">{{ $data->description }}</textarea>
                 @if ($errors->has('description'))
                     <span class="help-block">
                 <strong>{{ $errors->first('description') }}</strong>
@@ -117,6 +117,7 @@
         </div>
         <div class="form-group <?php if ($errors->has('file')) echo 'has-error' ?>">
             <label for="inputPrice" class="col-sm-2 control-label">Picture</label>
+
             <div class="col-sm-5">
                 <input type="file" accept="image/png, image/jpeg, image/gif" name="image[]" class="btn btn-github"
                        multiple>
@@ -137,60 +138,20 @@
 
     </form>
 
-
-    {{--Image of Product--}}
-    <div class="container">
-        <div class="row">
-            <?php $x = 0;?>
-            @foreach($images as $image)
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="javacript:void(0)" data-toggle="modal" data-target="#myModal-{{ $x }}"> <img class="image img-thumbnail" src="{!! asset('storage/app/public/product/'.$image->filename) !!}"
-                                                                                                              alt="{{ $image->original_filename }}"/>
-                        </a>
-                        <div class="caption">
-                            <button href="javascript:void(0)" onclick="delete_image('{{ $image->id_product }}','{{ $image->filename }}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                            <button class="btn btn-dropbox" data-toggle="modal" data-target="#myModal-{{ $x }}"><i
-                                        class="fa fa-eye"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="myModal-{{ $x }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">{{ $image->original_filename }}</h4>
-                            </div>
-                            <div class="thumbnail">
-                                <img class="img-rounded"
-                                     src="{!! asset('storage/app/public/product/'.$image->filename) !!}"
-                                     alt="{{ $image->original_filename }}"/>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <a href="javascript:void(0)" onclick="delete_image('{{ $image->id_product }}','{{ $image->filename }}')" class="btn btn-danger">Delete</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <?php $x++; ?>
-            @endforeach
-        </div>
+    <div id="list_image">
+        @include('admin.page.products.list_image_product')
     </div>
+
+
 
 @endsection
 @include('admin.layout.script')
 
+
 <script>
 
+    var id_product = '{!!  $data->id_product  !!}';
+   // alert(id_product);
     function delete_image(id, filename)
     {
         $.ajax({
@@ -200,18 +161,19 @@
             dataType: 'json',
             success: function (response) {
 
-                console.log(response.status);
-                if(response.status =='success')
-                {
-                    // alert('test');
-                    location.reload();
-                }
+                reload_list_image(id);
             },
             async: false,
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
             }
 
+        });
+    }
+    function reload_list_image(id_product)
+    {
+        $.get( '{!! url('admin/product/get_list_image_product') !!}/'+id_product, function (data) {
+            $('#list_image').html(data);
         });
     }
 </script>

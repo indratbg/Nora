@@ -12,13 +12,23 @@
                     <h3>{{ $row->product_name }}</h3>
 
                     <div class="row">
-                        <div class="col-sm-6">
-                            <p class="price">IDR {{ number_format($row->price,0,',','.') }}</p>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <p class="price">IDR {{ number_format($row->price,0,',','.') }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-6 ">
-                            <a href="javascript:void(0)" onclick="addToCart('{{$row->id_product}}}')"
-                               class="btn btn-primary pull-right">Buy</a>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                            <button class="btn btn-danger btn-block"><span class="fa fa-list"></span> Add to Wishlist</button>
+                                <button class="btn btn-primary btn-block"><span class="fa fa-shopping-cart fa-lg"></span> Buy</button>
+                            </div>
+                            {{--<div class="col-sm-6 ">
+                                <a onclick="addToCart('{{$row->id_product}}}')"
+                                   class="btn btn-primary pull-right"><span class="fa fa-shopping-cart fa-lg"></span>
+                                    Buy</a>
+                            </div>--}}
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -26,6 +36,7 @@
 
     @endforeach
 </div>
+{{--
 <script type="text/javascript" src="{!! asset('public/admin/plugins/jQuery/jQuery-2.1.4.min.js') !!}"></script>
 <script>
 
@@ -34,3 +45,4 @@
     }
     ;
 </script>
+--}}

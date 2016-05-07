@@ -65,7 +65,9 @@ Route::group(['middleware' => ['web']], function () {
             return view('admin.page.products.view_product', ['title' => 'View Product ' . $data->product_name, 'data' => $data, 'images' => $images]);
         });
         Route::post('admin/update_product/{id_product}', 'ProductsController@update');
-        Route::get('admin/get_list_product','ProductsController@ajaxList');
+        Route::get('admin/get_list_product', 'ProductsController@ajaxList');
+        Route::get('admin/edit_product/delete_image/{id_product}/{filename}', 'PictureController@destroy');
+        Route::get('admin/product/get_list_image_product/{id_product}', 'ProductsController@list_image_ajx');
 
         // Article
         Route::get('admin/list_article', function () {
@@ -114,21 +116,21 @@ Route::group(['middleware' => ['web']], function () {
 
         //Testimonial
         Route::get('admin/testimoni', function () {
-           $data =  App\Feedback::all();
-            return view('admin.page.testimoni.index', ['title' => 'Testimonial','data'=>$data]);
+            $data = App\Feedback::all();
+            return view('admin.page.testimoni.index', ['title' => 'Testimonial', 'data' => $data]);
         });
-        Route::post('admin/add_testimoni','FeedbackController@storeFeedbackAjax');
-        Route::get('admin/get_list_testimoni','FeedbackController@index');
-        Route::get('admin/edit_testimoni/{id}','FeedbackController@edit');
-        Route::post('admin/update_testimoni','FeedbackController@update');
-        Route::get('admin/delete_testimoni/{id}','FeedbackController@destroy');
+        Route::post('admin/add_testimoni', 'FeedbackController@storeFeedbackAjax');
+        Route::get('admin/get_list_testimoni', 'FeedbackController@index');
+        Route::get('admin/edit_testimoni/{id}', 'FeedbackController@edit');
+        Route::post('admin/update_testimoni', 'FeedbackController@update');
+        Route::get('admin/delete_testimoni/{id}', 'FeedbackController@destroy');
 
     });
 
     //User
     Route::get('/', function () {
         $recent_product = App\Products::orderBy('created_at', 'desc')->take(8)->get();
-        return view('visitor.home.index', ['breadcrumb' => 'Home', 'recent_product' => $recent_product]);
+        return view('visitor.home.index', ['breadcrumb' => '', 'recent_product' => $recent_product]);
     });
     Route::get('/contact_us', function () {
         return view('visitor.contact_us.contact_us', ['breadcrumb' => 'Contact Us']);
@@ -149,7 +151,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('product/detail/{id_product}', function ($id_product) {
         $data = App\Products::whereId_product($id_product)->firstorFail();
-        return view('visitor.products.detail', ['breadcrumb' => $data->product_name, 'data' => $data]);
+        $images = App\Picture::whereId_product($id_product)->get();
+        return view('visitor.products.detail', ['breadcrumb' => $data->product_name, 'data' => $data, 'images' => $images]);
     });
 
 

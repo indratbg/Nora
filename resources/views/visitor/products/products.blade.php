@@ -15,10 +15,10 @@
             @endif
             <div class="row">
                 @foreach($data as $row)
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-sm-4 col-md-3 col-xs-6">
                         <div class="thumbnail">
                             <a href="{{ url('/product/detail/'.$row->id_product) }}">
-                                <img class="img-rounded" src="{!! asset('storage/app/public/product/'.
+                                <img class="img-rounded" src="{!! asset('storage/app/public/product/thumb/'.
                             App\Picture::whereId_product($row->id_product)->firstorFail()->filename) !!}"
                                      alt="{{  $breadcrumb }}"/>
                             </a>
@@ -45,6 +45,4 @@
     </div>
 
 @endsection
-@section('script')
-    @include('layout.script')
-@stop
+@include('layout.script')

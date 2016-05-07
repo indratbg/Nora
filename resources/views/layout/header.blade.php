@@ -30,9 +30,17 @@
             </ul>
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input type="text" class=" form-control" placeholder="Search">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="search" class="form-control" placeholder="Search"/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button">
+                                        <span class="fa fa-search fa-lg"></span>
+                                    </button>
+                                </span>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
@@ -53,7 +61,7 @@
                 @endif
                 <li><a href="https://www.facebook.com/sharer/sharer.php?u={{url('/')}}" target="_blank"><i
                                 class="fa fa-facebook-official fa-lg"></i></a></li>
-                <li><a href="https://twitter.com/home?status={{url('/')}}" class="btn-link"><i
+                <li><a href="https://twitter.com/home?status={{url('/')}}" class="btn-link" target="_blank"><i
                                 class="fa fa-twitter fa-lg"></i></a></li>
                 <li>&emsp;&emsp;</li>
             </ul>

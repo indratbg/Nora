@@ -7,7 +7,11 @@
     @include('visitor.home.newProduct')
     <legend>Testimonial</legend>
     @include('visitor.home.testimo')
+    {{--@include('visitor.home.subscribe')--}}
 @endsection
-@section('script')
-    @include('layout.script')
-@stop
+@include('layout.script')
+<script>
+    $(document).ready(function () {
+        $('#subscribe_modal').modal('show');
+    })
+</script>

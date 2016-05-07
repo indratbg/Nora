@@ -20,7 +20,14 @@ class PictureController extends Controller
     public function destroy($id_product, $filename)
     {
         Picture::whereId_product($id_product)->whereFilename($filename)->delete();
-        Storage::disk('product')->delete($filename);
+        //cek whatever image exist
+        $cek = $exists = Storage::disk('product')->exists($filename);
+        if($cek)Storage::disk('product')->delete($filename);
+        $cek = $exists = Storage::disk('product_thumb')->exists($filename);
+        if($cek)Storage::disk('product_thumb')->delete($filename);
+
+
+        //Storage::disk('product')->delete($filename);
         return json_encode(array('status' => 'success'));
     }
 

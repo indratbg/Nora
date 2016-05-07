@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use Carbon\Carbon;
+
 //use Carbon\Carbon as Carbon;
 
 class ProductsController extends Controller
@@ -27,18 +29,24 @@ class ProductsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin',['except'=>'index']);
+        $this->middleware('admin', ['except' => 'index']);
     }
 
     public function index()
     {
         //
     }
+
     public function ajaxList()
     {
         $data = Products::get();
 
-        return response()->view('admin.page.products.list_products',['data'=>$data]);
+        return response()->view('admin.page.products.list_products', ['data' => $data]);
+    }
+    public function list_image_ajx($id_product)
+    {
+        $images = Picture::where('id_product', '=', $id_product)->get();
+        return response()->view('admin.page.products.list_image_product', ['images' => $images]);
     }
 
     /**
@@ -60,7 +68,7 @@ class ProductsController extends Controller
     public function store(ProductRequest $request)
     {
 
-        try{
+        try {
             $model = new Products;
             $id_product = rand() . substr($request->input('product_name'), 4);
             $model->id_product = $id_product;
@@ -73,14 +81,13 @@ class ProductsController extends Controller
             $model->post_date_to = $request->input('post_date_to');
             $model->status = $request->input('status');
             $model->save();
-        }
-        catch(\PDOException $e){
-            return Redirect::to('admin/create_product')->with('error',$e->getMessage())->withInput();
+        } catch (\PDOException $e) {
+            return Redirect::to('admin/create_product')->with('error', $e->getMessage())->withInput();
         }
 
-        if ($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
             $files = $request->file('image.*');
+            $x = 0;
             foreach ($files as $file) {
                 $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
                 $validator = Validator::make(['file' => $file], $rules);
@@ -99,11 +106,13 @@ class ProductsController extends Controller
                 $entry->original_filename = $file->getClientOriginalName();
                 $entry->save();
 
-                //Resize Image
-                //$filename  ='xxxx' . '.' . $file->getClientOriginalExtension();
-                $path = 'storage/app/public/product/thumb/'.$filename;
-                Image::make($file->getRealPath())->resize(300, 250)->save($path);
-
+                if ($x == 0) {
+                    //Resize Image
+                    //$filename  ='xxxx' . '.' . $file->getClientOriginalExtension();
+                    $path = 'storage/app/public/product/thumb/' . $filename;
+                    Image::make($file->getRealPath())->resize(300, 220)->save($path);
+                }
+                $x++;
             }
         }
         return Redirect::to('admin/products')->with('success', ucfirst(Request::input('product_name')) . ' has been saved');
@@ -146,23 +155,23 @@ class ProductsController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+*/
         if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))) $post_date_from = Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))->format('Y-m-d');
-        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))) $post_date_to = Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))->format('Y-m-d');*/
+        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))) $post_date_to = Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))->format('Y-m-d');
 
         $model = Products::where('id_product', $id_product)->
         update(['product_name' => $request->input('product_name'),
-            'post_date_from' =>$request->input('post_date_from'),
-            'post_date_to' => $request->input('post_date_to'),
+            'post_date_from' => $post_date_from,
+            'post_date_to' => $post_date_to,
             'stock' => $request->input('stock'),
             'price' => $request->input('price'),
             'description' => $request->input('description'),
             'category' => $request->input('category'),
             'status' => $request->input('status')
         ]);
-        if ($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
             $files = $request->file('image.*');
-
+            $x = 0;
             foreach ($files as $file) {
                 $rules = array('file' => 'required'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
                 $validator = Validator::make(['file' => $file], $rules);
@@ -171,7 +180,8 @@ class ProductsController extends Controller
                 }
 
                 $extension = $file->getClientOriginalExtension();
-                Storage::disk('product')->put($file->getFilename() . '.' . $extension, File::get($file));
+                $filename = $file->getFilename() . '.' . $extension;
+                Storage::disk('product')->put($filename, File::get($file));
                 $entry = new Picture();
                 $entry->id_product = $id_product;
                 $entry->type = 'product';
@@ -179,7 +189,13 @@ class ProductsController extends Controller
                 $entry->mime = $file->getClientMimeType();
                 $entry->original_filename = $file->getClientOriginalName();
                 $entry->save();
-
+                if ($x == 0) {
+                    //Resize Image
+                    //$filename  ='xxxx' . '.' . $file->getClientOriginalExtension();
+                    $path = 'storage/app/public/product/thumb/' . $filename;
+                    Image::make($file->getRealPath())->resize(300, 220)->save($path);
+                }
+                $x++;
 
             }
         }
