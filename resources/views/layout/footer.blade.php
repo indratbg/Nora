@@ -1,6 +1,6 @@
-<div class="container">
  <hr class="divider">
-    <span class="lead">Follow Us <a href="#"><i class="fa fa-rss fa-lg"></i></a></i>&nbsp;<a href=""><i class="fa fa-twitter fa-lg"></i></a>&nbsp;<a href=""><i class="fa fa-facebook fa-lg"></i></a>&nbsp;<a href="https://www.youtube.com/channel/UCzTgv3gePO-9D2MieJQ1uWQ"><i class="fa fa-youtube fa-lg"></i> </a></span>
+    <span class="lead">Follow Us <a href="#"><i class="fa fa-rss fa-lg"></i></a></i>&nbsp;<a href="#"><i class="fa fa-twitter fa-lg"></i></a>&nbsp;<a href=""><i class="fa fa-facebook fa-lg"></i></a>&nbsp;<a href="https://www.youtube.com/channel/UCzTgv3gePO-9D2MieJQ1uWQ"><i class="fa fa-youtube fa-lg"></i> </a></span>
+
     <hr class="divider">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -9,17 +9,17 @@
                     <div class="col-md-6 col-xs-6">
                         <legend class="text-uppercase">Information</legend>
                         <ul class="list-group">
-                            <li class="list-unstyled"><a href="#"> About Us</a></li>
-                            <li class="list-unstyled"><a href="#"> Press</a></li>
-                            <li class="list-unstyled"><a href="#"> Testimonial</a></li>
-                            <li class="list-unstyled"><a href="#"> Career</a></li>
+                            <li class="list-unstyled"><a href="{{ url('about_us') }}"> About Us</a></li>
+                            {{--<li class="list-unstyled"><a href="#"> Press</a></li>--}}
+                            {{--<li class="list-unstyled"><a href="#"> Testimonial</a></li>--}}
+                            <li class="list-unstyled"><a href="{{ url('career') }}"> Career</a></li>
                             </u>
                     </div>
                     <div class="col-md-6 col-xs-6">
                         <legend class="text-uppercase">Help</legend>
                         <ul class="list-group">
-                            <li class="list-unstyled"><a href="#"> Help</a></li>
-                            <li class="list-unstyled"><a href="#"> How to order</a></li>
+                            <li class="list-unstyled"><a href="{{ url('help') }}"> Help</a></li>
+                            <li class="list-unstyled"><a href="{{ url('how_to_order') }}"> How to order</a></li>
                         </ul>
                     </div>
                 </div>
@@ -58,4 +58,3 @@
             <a href="{{ url('/') }}"> Copyright &copy {{ date('Y') }} by Tokokita.com</a>
         </div>
     </div>
-</div>

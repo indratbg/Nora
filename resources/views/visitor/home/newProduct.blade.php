@@ -19,14 +19,13 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                            <button class="btn btn-danger btn-block"><span class="fa fa-list"></span> Add to Wishlist</button>
-                                <button class="btn btn-primary btn-block"><span class="fa fa-shopping-cart fa-lg"></span> Buy</button>
+                                <button class="btn btn-danger btn-block"><span class="fa fa-list"></span> Add to
+                                    Wishlist
+                                </button>
+                                <button class="btn btn-primary btn-block"><span
+                                            class="fa fa-shopping-cart fa-lg"></span> Buy
+                                </button>
                             </div>
-                            {{--<div class="col-sm-6 ">
-                                <a onclick="addToCart('{{$row->id_product}}}')"
-                                   class="btn btn-primary pull-right"><span class="fa fa-shopping-cart fa-lg"></span>
-                                    Buy</a>
-                            </div>--}}
                         </div>
 
                     </div>

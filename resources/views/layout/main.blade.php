@@ -25,19 +25,25 @@
     <link rel="stylesheet" href="{!! asset('public/css/font-awesome.min.css') !!}" type="text/css">
     <!-- bootstrap wysihtml5 - text editor -->
     {{--<link rel="stylesheet"--}}
-          {{--href="{!! asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}">--}}
+    {{--href="{!! asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}">--}}
     {{--Slider Product --}}
     <link href="{!! asset('public/css/pgwslideshow.min.css') !!}" media="all" rel="stylesheet" type="text/css"/>
     {{--Home Slider--}}
     <link href="{!! asset('public/css/nerveSlider.min.css') !!}" media="all" rel="stylesheet" type="text/css"/>
     {{--Product--}}
-    <link rel="stylesheet" href="{!! asset('public/css/product.css') !!}" type="text/css">
+    <link rel="stylesheet" href="{!! asset('public/css/front_style.css') !!}" type="text/css">
 </head>
 <body>
 <div class="container">
     <br/>
     @include('layout.shoppingCart')
     @include('layout.header')
+</div>
+<div class="container">
+    @yield('slinder')
+</div>
+
+<div class="container">
     @yield('content')
     @include('layout.footer')
 </div>

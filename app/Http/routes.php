@@ -17,7 +17,7 @@
 |--------------------------------------------------------------------------
 |
 | This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
+| it contains. The "web" middlewarmaae group is defined in your HTTP
 | kernel and includes session state, CSRF protection, and more.
 |
 */
@@ -143,10 +143,13 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     //PRODUCT
-    Route::get('product/{category}', function ($category) {
-        $category_id2 = App\Category::whereCategory_name($category)->first()->category_id2;
-        $data = App\Products::whereCategory($category_id2)->orderBy('updated_at', 'desc')->paginate();
-        return view('visitor.products.products', ['breadcrumb' => $category, 'data' => $data]);
+    Route::get('product/{category?}', function ($category = '') {
+        $category_id2 = '';
+        if ($category) {
+            $category_id2 = App\Category::whereCategory_name($category)->first()->category_id2;
+        }
+        $data = App\Products::where('category', 'like', "%$category_id2")->orderBy('updated_at', 'desc')->paginate();
+        return view('visitor.products.products', ['breadcrumb' => $category==''?'Product':$category, 'data' => $data]);
     });
 
     Route::get('product/detail/{id_product}', function ($id_product) {
@@ -161,11 +164,22 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::auth();
-    Route::get('/home', 'HomeController@index');
+    //Route::get('/home', 'HomeController@index');
 
 
     Route::post('/contact_us/feedback', 'FeedbackController@store');
 
 
+
+//    Helper Visitor
+    Route::get('/how_to_order', function () {
+        return view('visitor.helper.how_to_order', ['breadcrumb' => 'How to order']);
+    });
+    Route::get('/about_us', function () {
+        return view('visitor.helper.about_us', ['breadcrumb' => 'About Us']);
+    });
+    Route::get('/career', function () {
+        return view('visitor.helper.career', ['breadcrumb' => 'Career']);
+    });
 });
 

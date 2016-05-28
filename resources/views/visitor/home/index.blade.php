@@ -1,7 +1,11 @@
 @extends('layout.main')
 @section('breadcrumb',$breadcrumb)
-@section('content')
+@section('slinder')
     @include('visitor.home.slide')
+    @stop
+
+@section('content')
+
     <hr class="divided"/>
     <legend>New Product</legend>
     @include('visitor.home.newProduct')

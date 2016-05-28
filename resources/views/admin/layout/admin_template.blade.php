@@ -37,8 +37,8 @@
 </head>
 
 <body>
-
-<body class="hold-transition skin-red sidebar-mini fixed sidebar-collapse ">
+<body class="hold-transition skin-red sidebar-mini   ">
+{{--<body class="hold-transition skin-red sidebar-mini fixed sidebar-collapse ">--}}
 <div class="wrapper">
 
     <!-- Header -->

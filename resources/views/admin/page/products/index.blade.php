@@ -1,5 +1,4 @@
 @extends('admin.layout.admin_template')
-@include('admin.layout.script')
 @section('content')
     <div id="message"></div>
     <a href="{{ url('/admin/create_product') }}" class="btn btn-success"><i class="fa fa-pencil"></i> Add Product</a>
@@ -13,9 +12,7 @@
 @endsection
 {{--@include('admin.layout.script')--}}
 
-{{--<script type="text/javascript" src="{!! asset('public/js/jquery-1.12.0.min.js') !!}"></script>--}}
 <script>
-
 
     function delete_product(num) {
         if (confirm('Are you sure want to delete this product?')) {

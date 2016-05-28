@@ -8,47 +8,56 @@
 }
 
 #storeName {
- font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-body{
     font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+body {
+    font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 @font-face {
     font-family: diamont;
     src: url('../fonts/diamont.ttf');
 }
+
 @font-face {
     font-family: candy;
     src: url('../fonts/candy.otf');
 }
+
 @font-face {
     font-family: squimpy;
     src: url('../fonts/squimpy.otf');
 }
+
 @font-face {
     font-family: variety;
     src: url('../fonts/Variety.ttf');
 }
+
 @font-face {
     font-family: bullpen hv it;
     src: url('../fonts/bullpen hv it.ttf');
 }
+
 @font-face {
     font-family: bullpen hv;
     src: url('../fonts/bullpen hv.ttf');
 }
+
 @font-face {
     font-family: bullpen d;
     src: url('../fonts/bullpen 3d.ttf');
 }
-.text-diamond{
+
+.text-diamond {
     font-family: "bullpen d";
-    font-size:30pt;
+    font-size: 30pt;
 
 }
 
 #custom-search-input {
-    margin:0;
+    margin: 0;
     margin-top: 0px;
     padding: 0;
 }
@@ -64,7 +73,7 @@ body{
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 0px;
-    max-height:90%;
+    max-height: 90%;
 }
 
 #custom-search-input button {
@@ -80,9 +89,14 @@ body{
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    color:#D9230F;
+    color: #D9230F;
 }
 
 .search-query:focus + button {
     z-index: 3;
+}
+
+.menu_bar {
+    font-family:Tahoma;
+    /*font-size: 10pt;*/
 }

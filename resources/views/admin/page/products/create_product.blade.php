@@ -1,9 +1,10 @@
 @extends('admin.layout.admin_template')
 
 @section('content')
-
+{{--
     <form class="form-horizontal" action="{{ url('admin/create_product') }}" method="post"
-          enctype="multipart/form-data">
+          enctype="multipart/form-data">--}}
+     {!! Form::open(array('url'=>'admin/create_product','class'=>'form-horizontal','enctype'=>'multipart/form-data')) !!}
         {!! csrf_field() !!}
         <div class="form-group <?php if ($errors->has('product_name')) echo 'has-error' ?>">
             <label for="inputProductName" class="col-sm-2 control-label">Product Name</label>
@@ -22,7 +23,7 @@
             <label for="inputPost_date_from" class="col-sm-2 control-label">From Date</label>
 
             <div class="col-sm-5">
-                <input type="text" class="datepicker form-control" name="post_date_from"
+                <input type="input" class="datepicker form-control" name="post_date_from"
                        value="{{ old('post_date_from') }}" placeholder="dd/mm/yyyy">
                 @if ($errors->has('post_date_from'))
                     <span class="help-block">
@@ -137,7 +138,7 @@
             </div>
         </div>
 
-    </form>
-
+    {{--</form>--}}
+{!! Form::close() !!}
 @endsection
 @include('admin.layout.script')

@@ -20,6 +20,8 @@ class Products extends Migration
             $table->string('product_name',50);
             $table->text('description');
             $table->integer('price');
+            $table->decimal('discount_perc');
+            $table->integer('new_price');
             $table->integer('stock');
             $table->integer('on_order');
             $table->string('status');//A for posting and N to Unpost
