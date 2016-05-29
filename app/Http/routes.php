@@ -181,5 +181,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/career', function () {
         return view('visitor.helper.career', ['breadcrumb' => 'Career']);
     });
+
 });
 

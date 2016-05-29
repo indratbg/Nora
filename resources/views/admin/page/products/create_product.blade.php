@@ -1,10 +1,9 @@
 @extends('admin.layout.admin_template')
 
 @section('content')
-{{--
+
     <form class="form-horizontal" action="{{ url('admin/create_product') }}" method="post"
-          enctype="multipart/form-data">--}}
-     {!! Form::open(array('url'=>'admin/create_product','class'=>'form-horizontal','enctype'=>'multipart/form-data')) !!}
+          enctype="multipart/form-data">
         {!! csrf_field() !!}
         <div class="form-group <?php if ($errors->has('product_name')) echo 'has-error' ?>">
             <label for="inputProductName" class="col-sm-2 control-label">Product Name</label>
@@ -138,7 +137,7 @@
             </div>
         </div>
 
-    {{--</form>--}}
-{!! Form::close() !!}
+    </form>
+
 @endsection
 @include('admin.layout.script')
