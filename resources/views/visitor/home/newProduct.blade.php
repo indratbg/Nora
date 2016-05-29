@@ -4,7 +4,12 @@
             <div class="thumbnail">
                 <a href="{{ url('/product/detail/'.$row->id_product) }}">
                     <img class="img-responsive img-rounded" src="{!! asset('storage/app/public/product/thumb/'.
-                            App\Picture::whereId_product($row->id_product)->firstorFail()->filename) !!}"
+                            (App\Picture::whereId_product($row->id_product)->count()>0?
+                            App\Picture::whereId_product($row->id_product)->firstorFail()->filename:
+                            'default.png'
+                            )
+
+                            ) !!}"
                          alt="{{  $breadcrumb }}"/>
                 </a>
 
@@ -14,7 +19,11 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="col-sm-12">
+                              @if($row->dicount_perc>0)
+                                <h4>{{ $row->discount_perc }}% OFF &nbsp;IDR <s>{{ number_format($row->new_price,0,',','.') }}</s></h4>
+                              @endif
                                 <p class="price">IDR {{ number_format($row->price,0,',','.') }}</p>
+
                             </div>
                         </div>
                         <div class="form-group">

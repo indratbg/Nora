@@ -2,16 +2,16 @@
 
 
     {{--Image of Product--}}
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <?php $x = 0;?>
             @foreach($images as $image)
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 col-xs-6">
                     <div class="thumbnail">
                         <a href="javacript:void(0)" data-toggle="modal" data-target="#myModal-{{ $x }}">
                             <img class="img-responsive"
-                                 src="{!! asset('storage/app/public/slider/'.$image->filename) !!}"
+                                 src="{!! asset('storage/app/public/slider/thumb/'.$image->filename) !!}"
                                  alt="{{ $image->original_filename }}" width="100%" height="100%"/>
                         </a>
 

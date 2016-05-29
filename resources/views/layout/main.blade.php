@@ -40,7 +40,7 @@
     @include('layout.header')
 </div>
 <div class="container">
-    @yield('slinder')
+    {{--@yield('slinder')--}}
 </div>
 
 <div class="container">

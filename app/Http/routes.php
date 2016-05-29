@@ -182,5 +182,6 @@ Route::group(['middleware' => ['web']], function () {
         return view('visitor.helper.career', ['breadcrumb' => 'Career']);
     });
 
+
 });
 

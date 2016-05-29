@@ -46,19 +46,19 @@ class PictureController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             Storage::disk('slider')->put($file->getFilename() . '.' . $extension, File::get($file));
+            $filename =  $file->getFilename() . '.' . $extension;
             $model = new Picture();
             $model->title = $request->input('title');
             $model->desc = $request->input('desc');
             $model->type = 'slide';
-            $model->filename = $file->getFilename() . '.' . $extension;
+            $model->filename = $filename;
             $model->mime = $file->getClientMimeType();
             $model->original_filename = $file->getClientOriginalName();
             $model->save();
 
             //Resize Image
-            $filename  ='xxxx' . '.' . $file->getClientOriginalExtension();
-            $path = 'storage/app/public/product/thumb/'.$filename;
-            Image::make($file->getRealPath())->resize(200, 200)->save($path);
+            $path = 'storage/app/public/slider/thumb/'.$filename;
+            Image::make($file->getRealPath())->resize(300, 220)->save($path);
         }
 
         return redirect('admin/slider');

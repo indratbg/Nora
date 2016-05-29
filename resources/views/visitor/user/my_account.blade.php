@@ -28,6 +28,7 @@
                {{ Form::submit('Save') }}
 
            </div>
+
             {!! Form::Close() !!}
         </div>
 
