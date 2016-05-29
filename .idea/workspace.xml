@@ -2,23 +2,118 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ff517c3-5d72-4e6e-b73b-14d36d650c54" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_ide_helper.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/config/ide-helper.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/readme.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/resources/views/helper.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/resources/views/meta.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/src/Alias.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/src/Console/GeneratorCommand.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/src/Console/MetaCommand.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/src/Console/ModelsCommand.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/src/Generator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/src/IdeHelperServiceProvider.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/src/Method.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/ApcClassLoader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/ClassCollectionLoader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/ClassLoader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/ClassMapGenerator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/MapClassLoader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Psr4ClassLoader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/ApcClassLoaderTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/ClassCollectionLoaderTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/ClassLoaderTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/ClassMapGeneratorTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/Namespaced/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/Namespaced/Baz.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/Namespaced/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/Namespaced/FooBar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/Pearlike/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/Pearlike/Baz.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/Pearlike/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/alpha/Apc/ApcPrefixCollision/A/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/alpha/Apc/ApcPrefixCollision/A/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/alpha/Apc/NamespaceCollision/A/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/alpha/Apc/NamespaceCollision/A/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/beta/Apc/ApcPrefixCollision/A/B/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/beta/Apc/ApcPrefixCollision/A/B/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/beta/Apc/NamespaceCollision/A/B/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/beta/Apc/NamespaceCollision/A/B/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/fallback/Apc/Pearlike/FooBar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Apc/fallback/Namespaced/FooBar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/A.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/ATrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/B.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/BTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/CInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/CTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/D.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/E.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/F.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/G.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/ClassesWithParents/GInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Namespaced/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Namespaced/Baz.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Namespaced/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Namespaced/WithComments.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Namespaced2/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Namespaced2/Baz.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Namespaced2/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Pearlike/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Pearlike/Baz.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Pearlike/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Pearlike/WithComments.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Pearlike2/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Pearlike2/Baz.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/Pearlike2/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/alpha/NamespaceCollision/A/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/alpha/NamespaceCollision/A/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/alpha/NamespaceCollision/C/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/alpha/NamespaceCollision/C/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/alpha/PrefixCollision/A/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/alpha/PrefixCollision/A/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/alpha/PrefixCollision/C/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/alpha/PrefixCollision/C/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/beta/NamespaceCollision/A/B/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/beta/NamespaceCollision/A/B/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/beta/NamespaceCollision/C/B/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/beta/NamespaceCollision/C/B/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/beta/PrefixCollision/A/B/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/beta/PrefixCollision/A/B/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/beta/PrefixCollision/C/B/Bar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/beta/PrefixCollision/C/B/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/classmap/SomeClass.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/classmap/SomeInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/classmap/SomeParent.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/classmap/multipleNs.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/classmap/notAClass.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/classmap/notPhpFile.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/classmap/sameNsMultipleClasses.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/deps/traits.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/fallback/Namespaced/FooBar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/fallback/Namespaced2/FooBar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/fallback/Pearlike/FooBar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/fallback/Pearlike2/FooBar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/includepath/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/php5.4/traits.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/php5.5/class_cons.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/psr-4/Class_With_Underscores.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/psr-4/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/psr-4/Lets/Go/Deeper/Class_With_Underscores.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Fixtures/psr-4/Lets/Go/Deeper/Foo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/Tests/Psr4ClassLoaderTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/WinCacheClassLoader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/XcacheClassLoader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/class-loader/phpunit.xml.dist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/nora.iml" afterPath="$PROJECT_DIR$/.idea/nora.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/page/products/create_product.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/page/products/create_product.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/visitor/user/my_account.blade.php" afterPath="$PROJECT_DIR$/resources/views/visitor/user/my_account.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/installed.json" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" />
     </list>
     <ignored path="nora.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,8 +190,8 @@
       <file leaf-file-name="_ide_helper.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_ide_helper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.9230769">
-              <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+            <state vertical-scroll-proportion="-8.5">
+              <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -115,8 +210,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8426966">
-              <caret line="208" column="30" selection-start-line="208" selection-start-column="30" selection-end-line="208" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.6179775">
+              <caret line="215" column="7" selection-start-line="215" selection-start-column="6" selection-end-line="215" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -629,7 +724,13 @@
       <option name="project" value="LOCAL" />
       <updated>1464443585764</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="29 may 13.40">
+      <created>1464504049226</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1464504049226</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -645,20 +746,20 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2193646" sideWeight="0.49029127" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.49394855" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.51059" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.30882353" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="25" y="266" width="1316" height="195" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3251634" sideWeight="0.48940998" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2193646" sideWeight="0.49029127" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19742814" sideWeight="0.50970876" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -687,7 +788,8 @@
     <MESSAGE value="06may sore 21.56" />
     <MESSAGE value="07may sore 19.00" />
     <MESSAGE value="28may sore 20.50" />
-    <option name="LAST_COMMIT_MESSAGE" value="28may sore 20.50" />
+    <MESSAGE value="29 may 13.40" />
+    <option name="LAST_COMMIT_MESSAGE" value="29 may 13.40" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -905,6 +1007,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.4982078">
           <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1062,14 +1165,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_ide_helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9230769">
-          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1078,10 +1173,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/_ide_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.5">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8426966">
-          <caret line="208" column="30" selection-start-line="208" selection-start-column="30" selection-end-line="208" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.6179775">
+          <caret line="215" column="7" selection-start-line="215" selection-start-column="6" selection-end-line="215" selection-end-column="7" />
           <folding />
         </state>
       </provider>
