@@ -10,7 +10,7 @@
                 @foreach($images as $image)
                     <li>
                         <img class="img-responsive" src="{!! asset('storage/app/public/product/'.$image->filename) !!}"
-                            alt="{{ $image->title }}"
+                             alt="{{ $image->title }}"
                              data-description="{{ $image->desc }}">
                     </li>
                 @endforeach
@@ -40,11 +40,14 @@
     </div>
 
 @endsection
-@include('layout.script')
+@section('script')
 
-<script>
-    $(document).ready(function () {
-        $('.slide_product').pgwSlideshow({transitionEffect: 'fading',
-            maxHeight:'300px'});
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            $('.slide_product').pgwSlideshow({
+                transitionEffect: 'fading',
+                maxHeight: '300px'
+            });
+        });
+    </script>
+@stop

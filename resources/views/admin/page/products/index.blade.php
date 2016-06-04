@@ -2,6 +2,7 @@
 @section('content')
     <div id="message"></div>
     <a href="{{ url('/admin/create_product') }}" class="btn btn-success"><i class="fa fa-pencil"></i> Add Product</a>
+  
     <br/>
     <br/>
     <div id="list_content">
@@ -10,9 +11,17 @@
 
 
 @endsection
-{{--@include('admin.layout.script')--}}
 
+@section('script')
 <script>
+    $('#list_products').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+    });
 
     function delete_product(num) {
         if (confirm('Are you sure want to delete this product?')) {
@@ -44,3 +53,4 @@
         })
     }
 </script>
+@stop

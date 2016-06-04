@@ -47,24 +47,28 @@ Route::group(['middleware' => ['web']], function () {
             $data = App\Products::whereStatus('active')->get();
             return view('admin.page.products.index', ['title' => 'List Products', 'data' => $data]);
         });
-        Route::get('admin/edit_product/{id_product}', function ($id_product) {
-            $data = App\Products::whereId_product($id_product)->first();
-            $images = App\Picture::where('id_product', '=', $id_product)->get();
-            return view('admin.page.products.edit_product', ['title' => 'Update Product', 'data' => $data, 'images' => $images]);
-        });
+        //create product
         Route::get('admin/create_product', function () {
-            $category_cd = App\Category::whereCategory_id1("product")->orderBy('category_name', 'asc')->get();
-            return view('admin.page.products.create_product', ['title' => 'Create Product', 'category_cd' => $category_cd]);
+            return view('admin.page.products.create', ['title' => 'Create Product']);
         });
         Route::post('admin/create_product', 'ProductsController@store');
+        //edit product
+        Route::get('admin/edit_product/{id_product}', function ($id_product) {
+             $data = App\Products::whereId_product($id_product)->first();
+              $images = App\Picture::where('id_product', '=', $id_product)->get();
+        return view('admin.page.products.edit', ['title' => 'Update Product', 'data' => $data, 'images' => $images]);
+        }
+        );
+        Route::post('admin/update_product/{id_product}', 'ProductsController@update');
+        //delete product
         Route::get('admin/delete_product/{id_product}', 'ProductsController@destroy');
-
+        //view product
         Route::get('admin/view_product/{id_product}', function ($id_product) {
             $data = App\Products::where('id_product', '=', $id_product)->first();
             $images = App\Picture::where('id_product', '=', $id_product)->get();
             return view('admin.page.products.view_product', ['title' => 'View Product ' . $data->product_name, 'data' => $data, 'images' => $images]);
         });
-        Route::post('admin/update_product/{id_product}', 'ProductsController@update');
+       
         Route::get('admin/get_list_product', 'ProductsController@ajaxList');
         Route::get('admin/edit_product/delete_image/{id_product}/{filename}', 'PictureController@destroy');
         Route::get('admin/product/get_list_image_product/{id_product}', 'ProductsController@list_image_ajx');

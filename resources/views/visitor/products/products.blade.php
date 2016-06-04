@@ -55,4 +55,3 @@
     </div>
 
 @endsection
-@include('layout.script')

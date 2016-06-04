@@ -7,7 +7,7 @@
 
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <a href="javacript:void(0)" data-toggle="modal" data-target="#myModal-{{ $x }}"> <img class="image img-thumbnail" src="{!! asset('storage/app/public/product/'.$image->filename) !!}"
+                    <a href="javacript:void(0)" data-toggle="modal" data-target="#myModal-{{ $x }}"> <img class="image img-thumbnail" src="{!! asset('storage/app/public/product/thumb/'.$image->filename) !!}"
                                                                                                           alt="{{ $image->original_filename }}"/>
                     </a>
                     <div class="caption">

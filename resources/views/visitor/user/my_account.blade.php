@@ -35,4 +35,3 @@
     </div>
 
 @stop
-@include('layout.script')

@@ -46,7 +46,7 @@
         </div>
     </div>
 @endsection
-@include('admin.layout.script')
+@section('script')
 <script>
 
     function delete_article(num) {
@@ -67,3 +67,4 @@
         }
     }
 </script>
+@stop

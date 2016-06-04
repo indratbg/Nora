@@ -35,7 +35,7 @@
     </div>
 </div>
 
-@include('admin.layout.script')
+
 
 <script>
 

@@ -2,7 +2,7 @@
 @section('breadcrumb',$breadcrumb)
 @section('slinder')
     @include('visitor.home.slide')
-    @stop
+@stop
 
 @section('content')
 
@@ -13,9 +13,10 @@
     @include('visitor.home.testimo')
     {{--@include('visitor.home.subscribe')--}}
 @endsection
-@include('layout.script')
-<script>
-    $(document).ready(function () {
-        $('#subscribe_modal').modal('show');
-    })
-</script>
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('#subscribe_modal').modal('show');
+        })
+    </script>
+@stop

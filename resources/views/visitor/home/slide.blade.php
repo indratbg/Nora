@@ -5,6 +5,7 @@
              alt="{{ $row->desc }}">
     @endforeach
 </div>
+@section('script')
 <script>
     $(document).ready(function () {
         $(".home_slider").nerveSlider({
@@ -19,3 +20,4 @@
         });
     });
 </script>
+@stop

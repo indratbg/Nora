@@ -41,18 +41,3 @@
         {{--</div>--}}
     </div>
 </div>
-
-@include('admin.layout.script')
-
-<script>
-
-    $('#list_products').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
-    });
-
-</script>

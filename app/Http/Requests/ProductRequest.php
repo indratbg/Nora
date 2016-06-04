@@ -29,8 +29,8 @@ class ProductRequest extends Request
             'description' => 'required',
             'stock' => 'required',
             'price' => 'required|integer',
-            'post_date_from' => 'date_format:d/m/Y|after:today',
-            'post_date_to' => 'date_format:d/m/Y|after:post_date_from',
+            'post_date_from' => 'date_format:d/m/Y',
+            'post_date_to' => 'date_format:d/m/Y',
             'status' => 'required'
         ];
     }

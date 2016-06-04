@@ -4,4 +4,3 @@
 
 
 @endsection
-@include('admin.layout.script')

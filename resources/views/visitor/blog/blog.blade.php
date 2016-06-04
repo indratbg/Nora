@@ -37,7 +37,7 @@
         </div>
     </div>
 @endsection
-@include('layout.script')
+@section('script')
 {{--<script type="text/javascript" src="{!! asset('public/js/jquery-1.12.0.min.js') !!}"></script/>--}}
 <script>
     $(window).on('hashchange', function () {
@@ -69,3 +69,4 @@
         });
     }
 </script>
+@stop

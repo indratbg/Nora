@@ -28,6 +28,4 @@
             <a href="{{ url('blog') }}" class="btn btn-primary">Back</a>
         </div>
     </div>
-
 @endsection
-@include('layout.script')

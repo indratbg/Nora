@@ -43,7 +43,7 @@
 
 
 @endsection
-@include('admin.layout.script')
+@section('script')
 
 <script>
     $(document).ready(function () {
@@ -92,3 +92,4 @@
         });
     }
 </script>
+@stop

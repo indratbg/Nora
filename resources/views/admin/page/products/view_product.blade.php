@@ -44,7 +44,7 @@
     </div>
 
 @endsection
-@include('admin.layout.script')
+@section('script')
 <script>
 
     var id_product = '{!!  $data->id_product  !!}';
@@ -74,3 +74,4 @@
         });
     }
 </script>
+@stop
