@@ -1,3 +1,4 @@
+<legend>New Product</legend>
 <div class="row">
     @foreach($recent_product as $row)
         <div class="col-sm-4 col- col-md-3 col-xs-6">
@@ -14,7 +15,7 @@
                 </a>
 
                 <div class="caption">
-                    <h3>{{ $row->product_name }}</h3>
+                    <h3>{{ substr($row->product_name,0,10) }}</h3>
 
                     <div class="row">
                         <div class="form-group">

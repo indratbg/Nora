@@ -7,10 +7,10 @@
 @section('content')
 
     <hr class="divided"/>
-    <legend>New Product</legend>
+    
     @include('visitor.home.newProduct')
-    <legend>Testimonial</legend>
-    @include('visitor.home.testimo')
+   
+      {{--@include('visitor.home.testimo') --}}
     {{--@include('visitor.home.subscribe')--}}
 @endsection
 @section('script')

@@ -9,7 +9,10 @@ class Products extends Model
 {
     //
     protected $table = 'products';
-    protected $fillable = ['id_product,product_name,category,description,stock, price,post_date_from,post_date_to,status'];
+    protected $primaryKey = 'id_product';
+    public $incrementing = false;
+    protected $fillable = ['id_product,product_name,category,description,stock, price,
+                            discount_perc,new_price,post_date_from,post_date_to,status'];
     protected $dates = ['post_date_from', 'post_date_to'];
 
     public function setPostDateFromAttribute($value)
@@ -31,5 +34,10 @@ class Products extends Model
     {
         return Carbon::parse($value)->format('d/m/Y');
     }
+    public function getStatusAttribute($value)
+    {
+        return ucfirst($value);
+    }
 
 }
+

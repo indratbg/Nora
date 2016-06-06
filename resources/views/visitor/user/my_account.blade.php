@@ -4,30 +4,22 @@
     <h3>Change Password</h3>
     <div class="row">
         <div class="col-md-4 col-sm-6 col-md-offset-4">
-            {{-- <form class="form-horizontal" action="{{ url('change_password')}}" method="post">
-                 <div class="form-group">
-                     <input type="password" name="old_password" class="form-control" placeholder="Old Password">
-                 </div>
-                 <div class="form-group">
-                     <input type="password" name="new password" class="form-control" placeholder="New Password">
-                 </div>
-                 <div class="form-group">
-                     <input type="password" name="conform_password" class="form-control"
-                            placeholder="Confirmation New Password">
-                 </div>
-                 <div class="form-group">
-                     <input type="submit" value="Change" class="btn btn-primary">
-                 </div>
-
-             </form>--}}
             {!! Form::open(array('url'=>'change_password','class'=>'form-horizontal')) !!}
            <div class="form-group">
-               {{ Form::label('email', 'E-Mail Address') }}
-               {{ Form::password('old_password',null,array('class'=>'form-control')) }}
-               {{ Form::password('new_password',null,array('class'=>'form-control')) }}
-               {{ Form::submit('Save') }}
-
-           </div>
+               {{ Form::label('old_password', 'Old Password') }}
+               {!! Form::password('old_password', ['class'=>'form-control','placeholder'=>'Old Password']) !!}
+            </div>
+          <div class="form-group">
+            {{ Form::label('new_password', 'New Password') }}
+            {{ Form::password('new_password',['class'=>'form-control','placeholder'=>'New Password']) }}
+          </div>
+        <div class="form-group">
+          {!! Form::label('password_confirmation', 'Confirmation Password') !!}
+          {!! Form::password('password_confirmation', ['class'=>'form-control','placeholder'=>'Confirmmation Password']) !!}
+        </div>
+        <div class="form-group">
+            {{ Form::submit('Save',['class'=>'btn btn-primary']) }}
+        </div>
 
             {!! Form::Close() !!}
         </div>

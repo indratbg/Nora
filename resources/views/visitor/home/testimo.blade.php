@@ -74,6 +74,7 @@
     }
 
 </style>
+ <legend>Testimonial</legend>
 <div class="row">
     <div class="col-md-12" data-wow-delay="0.1s">
         <div class="carousel slide" data-ride="carousel" id="quote-carousel">

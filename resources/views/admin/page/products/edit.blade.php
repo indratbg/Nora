@@ -1,7 +1,7 @@
 @extends('admin.layout.admin_template')
 @section('content')
 @include('errors.error')
-{!! Form::model($data, ['url'=>'admin/update_product/'.$data->id_product,'files'=>true]) !!}
+{!! Form::model($data, ['url'=>'admin/update_product/'.$data->id_product,'files'=>true,'class'=>'form-horizontal']) !!}
 	@include('admin.page.products._form', [ 'btnText'=> 'Update'])
 {!! Form::close() !!}
 

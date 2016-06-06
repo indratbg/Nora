@@ -28,7 +28,7 @@ class BlogController extends Controller
     public function index(Request $request, $category = '')
     {
 
-        $posts = Blog::where('category', 'like', "%$category%")->orderBy('created_at', 'desc')->paginate(10);
+        $posts = Blog::where('category', 'like', "%$category%")->orderBy('updated_at', 'desc')->paginate(10);
         if (Request::ajax()) {
             return Response::json(View::make('visitor.blog.blog_ajax', array('breadcrumb' => 'Blog', 'data' => $posts))->render());
         }

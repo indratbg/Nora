@@ -19,12 +19,17 @@
                         <div class="thumbnail">
                             <a href="{{ url('/product/detail/'.$row->id_product) }}">
                                 <img class="img-rounded" src="{!! asset('storage/app/public/product/thumb/'.
-                            App\Picture::whereId_product($row->id_product)->firstorFail()->filename) !!}"
+                             (App\Picture::whereId_product($row->id_product)->count()>0?
+                            App\Picture::whereId_product($row->id_product)->firstorFail()->filename:
+                            'default.png' 
+                            )
+                            )
+                            !!}"
                                      alt="{{  $breadcrumb }}"/>
                             </a>
 
                             <div class="caption">
-                                <h3>{{ $row->product_name }}</h3>
+                                <h5>{{ $row->product_name }}</h5>
 
                                 <div class="row">
                                     <div class="form-group">

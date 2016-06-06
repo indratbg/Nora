@@ -70,17 +70,20 @@ class ProductsController extends Controller
 
         try {
             $model = new Products;
-            $id_product = rand() . substr($request->input('product_name'), 4);
-            $model->id_product = $id_product;
+            //$id_product = rand() . substr($request->input('product_name'), 4);
+            $model->id_product = $request->input('id_product');
             $model->product_name = $request->input('product_name');
             $model->category = $request->input('category');
             $model->description = $request->input('description');
             $model->stock = $request->input('stock');
             $model->price = $request->input('price');
+            $model->discount_perc = $request->input('discount_perc');
+            $model->new_price = $request->input('new_price');
             $model->post_date_from = $request->input('post_date_from');
             $model->post_date_to = $request->input('post_date_to');
             $model->status = $request->input('status');
             $model->save();
+   
         } catch (\PDOException $e) {
             return Redirect::to('admin/create_product')->with('error', $e->getMessage())->withInput();
         }
@@ -99,7 +102,7 @@ class ProductsController extends Controller
                 $filename = $file->getFilename() . '.' . $extension;
                 Storage::disk('product')->put($filename, File::get($file));
                 $entry = new Picture();
-                $entry->id_product = $id_product;
+                $entry->id_product = $request->input('id_product');;
                 $entry->type = 'product';
                 $entry->filename = $file->getFilename() . '.' . $extension;
                 $entry->mime = $file->getClientMimeType();
@@ -150,25 +153,22 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProductRequest $request, $id_product)
-    {/*
-        $validator = Validator::make($request->all(), Products::$rules);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-*/
-        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))) $post_date_from = Carbon::createFromFormat('d/m/Y', $request->input('post_date_from'))->format('Y-m-d');
-        if (Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))) $post_date_to = Carbon::createFromFormat('d/m/Y', $request->input('post_date_to'))->format('Y-m-d');
+    {
+        //update model product
+        $model = Products::find($id_product);
+        $model->product_name = $request->input('product_name');
+        $model->category = $request->input('category');
+        $model->post_date_from = $request->input('post_date_from');
+        $model->post_date_to = $request->input('post_date_to');
+        $model->description = $request->input('description');
+        $model->stock = $request->input('stock');
+        $model->price = $request->input('price');
+        $model->discount_perc = $request->input('discount_perc');
+        $model->new_price = $request->input('new_price');
+        $model->status = $request->input('status');
 
-        $model = Products::where('id_product', $id_product)->
-        update(['product_name' => $request->input('product_name'),
-            'post_date_from' => $post_date_from,
-            'post_date_to' => $post_date_to,
-            'stock' => $request->input('stock'),
-            'price' => $request->input('price'),
-            'description' => $request->input('description'),
-            'category' => $request->input('category'),
-            'status' => $request->input('status')
-        ]);
+        $model->save();
+
         if ($request->hasFile('image')) {
             $files = $request->file('image.*');
             $x = 0;

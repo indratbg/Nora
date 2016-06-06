@@ -33,7 +33,9 @@
     <link rel="stylesheet" href="{!! asset('public/admin/plugins/datatables/dataTables.bootstrap.css') !!}">
     {{--Add css--}}
     <link rel="stylesheet" href="{!! asset('public/admin/dist/css/add.css') !!}">
-
+    <!-- CK Editor -->
+    <!-- <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script> -->
+    <script src="{!! asset('public/admin/plugins/ckeditor/ckeditor.js') !!}"></script>
 </head>
 
 <body>
@@ -98,9 +100,7 @@
 <script src="{!! asset('public/admin/plugins/fastclick/fastclick.min.js') !!}"></script>
 <!-- AdminLTE App -->
 <script src="{!! asset('public/admin/dist/js/app.min.js') !!}"></script>
-<!-- CK Editor -->
-<!-- <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script> -->
-<script src="{!! asset('public/admin/plugins/ckeditor/ckeditor.js') !!}"></script>
+
 <!-- bootstrap time picker -->
 <script src="{!! asset('public/admin/plugins/datepicker/bootstrap-datepicker.js') !!}"></script>
 <!-- DataTables -->

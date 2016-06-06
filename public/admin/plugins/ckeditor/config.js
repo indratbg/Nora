@@ -36,3 +36,13 @@ CKEDITOR.editorConfig = function( config ) {
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 };
+CKEDITOR.editorConfig = function( config )
+{
+   config.filebrowserBrowseUrl = '//localhost/nora/public/admin/plugins/kcfinder/browse.php?type=files';
+   config.filebrowserImageBrowseUrl = '//localhost/nora/public/admin/plugins/kcfinder/browse.php?type=images';
+   config.filebrowserFlashBrowseUrl = '//localhost/nora/public/admin/plugins/kcfinder/browse.php?type=flash';
+   config.filebrowserUploadUrl = '//localhost/nora/public/admin/plugins/kcfinder/upload.php?type=files';
+   config.filebrowserImageUploadUrl = '//localhost/nora/public/admin/plugins/kcfinder/upload.php?type=images';
+   config.filebrowserFlashUploadUrl = '//localhost/nora/public/admin/plugins/kcfinder/upload.php?type=flash';
+};
+

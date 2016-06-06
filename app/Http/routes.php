@@ -64,7 +64,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('admin/delete_product/{id_product}', 'ProductsController@destroy');
         //view product
         Route::get('admin/view_product/{id_product}', function ($id_product) {
-            $data = App\Products::where('id_product', '=', $id_product)->first();
+            $data = App\Products::find($id_product);
             $images = App\Picture::where('id_product', '=', $id_product)->get();
             return view('admin.page.products.view_product', ['title' => 'View Product ' . $data->product_name, 'data' => $data, 'images' => $images]);
         });
